@@ -111,5 +111,26 @@
   <ItemGroup>
     <None Include="Resources\twitter-yellow.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\drag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom-in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom-out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\drag %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forbidden.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cursor.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

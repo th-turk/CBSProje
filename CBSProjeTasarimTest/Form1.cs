@@ -19,8 +19,10 @@ namespace CBSProjeTasarimTest
         public Form1()
         {
             InitializeComponent();
+            simgeDurKuc.Visible = false;
             FormBorderStyle = FormBorderStyle.None;
             sliderHided=true;
+            iconsSlider.Width = 0;
 
         }
 
@@ -30,13 +32,14 @@ namespace CBSProjeTasarimTest
             dunya.BackColor = selected;
             sidePanel.Top = dunya.Top;
 
+
             fullSize.BackgroundImage = CBSProjeTasarimTest.Properties.Resources.switch_to_full_screen_button__1_;
 
             mi = new MapInfo.MapInfoApplication();
             int p = map.Handle.ToInt32();
             mi.Do("set next document parent " + p.ToString() + "style 1");
             mi.Do("set application window " + p.ToString());
-            mi.Do("run application \"" + "d:/haritalar.WOR" + "\"");
+            mi.Do("run application \"" + "d:/haritalar2.WOR" + "\"");
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -141,8 +144,8 @@ namespace CBSProjeTasarimTest
             containerMap.Visible = true;
             sideBarReset();
 
-            mi.Do("Set Map  Layer 2 Display Graphic");
-            mi.Do("Set Map  Layer 1 Display off");
+            //mi.Do("Set Map  Layer 2 Display Graphic");
+            //mi.Do("Set Map  Layer 1 Display off");
             mi.Do("Set Map  Zoom Entire Layer 2");
             
         }
@@ -159,8 +162,8 @@ namespace CBSProjeTasarimTest
             containerMap.Visible = true;
             sideBarReset();
 
-            mi.Do("Set Map  Layer 2 Display off");
-            mi.Do("Set Map  Layer 1 Display Graphic");
+            //mi.Do("Set Map  Layer 2 Display off");
+            //mi.Do("Set Map  Layer 1 Display Graphic");
             mi.Do("Set Map  Zoom Entire Layer 1");
            
 
@@ -225,5 +228,79 @@ namespace CBSProjeTasarimTest
             else sliderButton.Text = "<<";
             timer.Start();
         }
-     }
+
+        //zoom-in
+        private void button6_Click(object sender, EventArgs e)
+        {
+            mi.Do("run menu command  1705");
+        }
+
+        //zoom-out
+        private void button9_Click(object sender, EventArgs e)
+        {
+            mi.Do("run menu command  1706");
+        }
+
+        //grabber
+        private void button4_Click(object sender, EventArgs e)
+        {
+            mi.Do("run menu command  1702");
+        }
+
+        //info
+        private void button7_Click(object sender, EventArgs e)
+        {
+            mi.Do("run menu command 1707");
+        }
+
+        //cancel all selects
+        private void button5_Click(object sender, EventArgs e)
+        {
+            mi.Do("run menu command  304");
+        }
+
+        //select
+        private void button8_Click(object sender, EventArgs e)
+        {
+            mi.Do("run menu command  1701");
+        }
+
+        private void button6_MouseHover(object sender, EventArgs e)
+        {
+            ((Button)sender).BackColor = Color.FromArgb(154, 164, 171);
+            string tooltipText="";
+            switch (((Button)sender).Name)
+            {
+                case "button6":
+                    tooltipText = "Zoom++";
+                    break;
+                case "button9":
+                    tooltipText = "Zoom--";
+                    break;
+                case "button5":
+                    tooltipText = "Seçili Alanları Kaldır";
+                    break;
+                case "button4":
+                    tooltipText = "Harita Tut-Sürükle";
+                    break;
+                case "button8":
+                    tooltipText = "Alan Seç";
+                    break;
+                case "button7":
+                    tooltipText = "Bilgi";
+                    break;
+            }
+
+            toolTip1.Show(tooltipText, ((Button)sender), ((Button)sender).Width - 1, ((Button)sender).Height - 1,5000);
+
+        }
+
+        private void button6_MouseLeave(object sender, EventArgs e)
+        {
+            ((Button)sender).BackColor = Color.Transparent;
+            toolTip1.RemoveAll();
+        }
+
+        
+    }
 }
