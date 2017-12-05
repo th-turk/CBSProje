@@ -28,8 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.leftSideBar = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.iconsSlider = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.sliderButton = new System.Windows.Forms.Button();
             this.sidePanel = new System.Windows.Forms.Panel();
             this.stat = new System.Windows.Forms.Button();
             this.turkiye = new System.Windows.Forms.Button();
@@ -45,7 +56,12 @@
             this.map = new System.Windows.Forms.Panel();
             this.tags = new System.Windows.Forms.Panel();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.leftSideBar.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.iconsSlider.SuspendLayout();
             this.rightTopCont.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -56,6 +72,7 @@
             // leftSideBar
             // 
             this.leftSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(208)))), ((int)(((byte)(240)))));
+            this.leftSideBar.Controls.Add(this.panel2);
             this.leftSideBar.Controls.Add(this.sidePanel);
             this.leftSideBar.Controls.Add(this.stat);
             this.leftSideBar.Controls.Add(this.turkiye);
@@ -65,6 +82,146 @@
             this.leftSideBar.Name = "leftSideBar";
             this.leftSideBar.Size = new System.Drawing.Size(162, 510);
             this.leftSideBar.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(208)))), ((int)(((byte)(240)))));
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.sliderButton);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 225);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(162, 285);
+            this.panel2.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.iconsSlider);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 25);
+            this.panel3.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(162, 260);
+            this.panel3.TabIndex = 7;
+            // 
+            // iconsSlider
+            // 
+            this.iconsSlider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(236)))), ((int)(((byte)(240)))));
+            this.iconsSlider.Controls.Add(this.button5);
+            this.iconsSlider.Controls.Add(this.button7);
+            this.iconsSlider.Controls.Add(this.button9);
+            this.iconsSlider.Controls.Add(this.button6);
+            this.iconsSlider.Controls.Add(this.button4);
+            this.iconsSlider.Controls.Add(this.button8);
+            this.iconsSlider.Dock = System.Windows.Forms.DockStyle.Right;
+            this.iconsSlider.Location = new System.Drawing.Point(162, 0);
+            this.iconsSlider.Name = "iconsSlider";
+            this.iconsSlider.Size = new System.Drawing.Size(0, 260);
+            this.iconsSlider.TabIndex = 0;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Transparent;
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(42, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(30, 30);
+            this.button5.TabIndex = 1;
+            this.button5.UseVisualStyleBackColor = false;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Transparent;
+            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Location = new System.Drawing.Point(78, 38);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(30, 30);
+            this.button7.TabIndex = 5;
+            this.button7.UseVisualStyleBackColor = false;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Transparent;
+            this.button9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button9.BackgroundImage")));
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Location = new System.Drawing.Point(6, 38);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(30, 30);
+            this.button9.TabIndex = 3;
+            this.button9.UseVisualStyleBackColor = false;
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Transparent;
+            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(6, 3);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(30, 30);
+            this.button6.TabIndex = 0;
+            this.button6.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(78, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(30, 30);
+            this.button4.TabIndex = 2;
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Transparent;
+            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Location = new System.Drawing.Point(42, 38);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(30, 30);
+            this.button8.TabIndex = 4;
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // sliderButton
+            // 
+            this.sliderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sliderButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(236)))), ((int)(((byte)(240)))));
+            this.sliderButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.sliderButton.FlatAppearance.BorderSize = 0;
+            this.sliderButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
+            this.sliderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sliderButton.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 10F);
+            this.sliderButton.ForeColor = System.Drawing.Color.Black;
+            this.sliderButton.Location = new System.Drawing.Point(103, 0);
+            this.sliderButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.sliderButton.Name = "sliderButton";
+            this.sliderButton.Size = new System.Drawing.Size(59, 26);
+            this.sliderButton.TabIndex = 6;
+            this.sliderButton.Text = "<<";
+            this.sliderButton.UseCompatibleTextRendering = true;
+            this.sliderButton.UseVisualStyleBackColor = false;
+            this.sliderButton.Click += new System.EventHandler(this.sliderButton_Click);
             // 
             // sidePanel
             // 
@@ -256,6 +413,15 @@
             this.listBox1.Size = new System.Drawing.Size(179, 379);
             this.listBox1.TabIndex = 0;
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Text = "GaziCBS";
+            this.notifyIcon.Visible = true;
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,6 +443,9 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.leftSideBar.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.iconsSlider.ResumeLayout(false);
             this.rightTopCont.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
@@ -304,6 +473,18 @@
         private System.Windows.Forms.Panel tags;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Panel rightTopCont;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel iconsSlider;
+        private System.Windows.Forms.Button sliderButton;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

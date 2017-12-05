@@ -1,12 +1,12 @@
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\CBSProjeTasarimTest.exe.config
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\CBSProjeTasarimTest.exe
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\CBSProjeTasarimTest.pdb
-C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csprojResolveAssemblyReference.cache
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\Interop.MapInfo.dll
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csproj.ResolveComReference.cache
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.Form1.resources
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.Properties.Resources.resources
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csproj.GenerateResource.Cache
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csproj.CoreCompileInputs.cache
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.exe
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.pdb
-C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\Interop.MapInfo.dll
-C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csproj.ResolveComReference.cache
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csprojResolveAssemblyReference.cache

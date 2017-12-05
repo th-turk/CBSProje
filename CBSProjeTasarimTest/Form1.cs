@@ -20,6 +20,8 @@ namespace CBSProjeTasarimTest
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
+            sliderHided=true;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -34,7 +36,7 @@ namespace CBSProjeTasarimTest
             int p = map.Handle.ToInt32();
             mi.Do("set next document parent " + p.ToString() + "style 1");
             mi.Do("set application window " + p.ToString());
-            mi.Do("run application \"" + "d:/ole1.WOR" + "\"");
+            mi.Do("run application \"" + "d:/haritalar.WOR" + "\"");
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -87,6 +89,18 @@ namespace CBSProjeTasarimTest
                 }
 
             }
+
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                notifyIcon.Visible = true;
+                notifyIcon.ShowBalloonTip(500);
+                this.Hide();
+            }
+
+            else if (FormWindowState.Normal == this.WindowState)
+            {
+                notifyIcon.Visible = false;
+            }
         }
 
         private bool dragging = false;
@@ -124,15 +138,32 @@ namespace CBSProjeTasarimTest
             stat.BackColor = unselected;
             sidePanel.Top = dunya.Top;
 
+            containerMap.Visible = true;
+            sideBarReset();
+
+            mi.Do("Set Map  Layer 2 Display Graphic");
+            mi.Do("Set Map  Layer 1 Display off");
+            mi.Do("Set Map  Zoom Entire Layer 2");
+            
         }
 
         private void turkiye_Click(object sender, EventArgs e)
         {
+            
             sidePanel.Height = turkiye.Height;
             turkiye.BackColor = selected;
             stat.BackColor = unselected;
             dunya.BackColor = unselected;
             sidePanel.Top = turkiye.Top;
+
+            containerMap.Visible = true;
+            sideBarReset();
+
+            mi.Do("Set Map  Layer 2 Display off");
+            mi.Do("Set Map  Layer 1 Display Graphic");
+            mi.Do("Set Map  Zoom Entire Layer 1");
+           
+
         }
 
         private void stat_Click(object sender, EventArgs e)
@@ -142,12 +173,57 @@ namespace CBSProjeTasarimTest
             turkiye.BackColor = unselected;
             dunya.BackColor = unselected;
             sidePanel.Top = stat.Top;
+
+            containerMap.Visible = false;
+            panel2.Visible = false;
+            
+        }
+        private void sideBarReset()
+        {
+            panel2.Visible = true;
+            sliderButton.Text = "<<";
+            iconsSlider.Width = 0;
+            sliderHided = true;
         }
 
         private void simgeDurKuc_Click(object sender, EventArgs e)
         {
-            Form1.ActiveForm.Visible = false;
-                       
+            this.WindowState = FormWindowState.Minimized;
         }
-    }
+
+
+        public int sliderSize;
+        public bool sliderHided;
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (sliderHided)
+            {
+                iconsSlider.Width += 22;
+                if (iconsSlider.Width >= 110)
+                {
+                    timer.Stop();
+                    sliderHided = false;
+                    this.Refresh();
+                }
+            }
+            else
+            {
+                iconsSlider.Width -= 22;
+                if (iconsSlider.Width <= 0)
+                {
+                    timer.Stop();
+                    sliderHided = true;
+                    this.Refresh();
+                }
+            }
+           
+        }
+
+        private void sliderButton_Click(object sender, EventArgs e)
+        {
+            if (sliderHided) sliderButton.Text = ">>";
+            else sliderButton.Text = "<<";
+            timer.Start();
+        }
+     }
 }
