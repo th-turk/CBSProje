@@ -1,0 +1,19 @@
+!table
+!version 300
+!charset WindowsLatin1
+
+Definition Table
+  Type NATIVE Charset "WindowsLatin1"
+  Fields 7
+    x Float ;
+    y Float ;
+    id Char (100) ;
+    hastag Char (100) ;
+    user Char (100) ;
+    konum Char (100) ;
+    tarih Char (100) ;
+begin_metadata
+"\IsReadOnly" = "FALSE"
+"\MapInfo" = ""
+"\MapInfo\TableID" = "8c4297f6-67fc-424e-b3f8-ab9c73246a7d"
+end_metadata
