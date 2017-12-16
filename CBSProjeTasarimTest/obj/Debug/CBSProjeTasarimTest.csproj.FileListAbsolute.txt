@@ -14,4 +14,3 @@ C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CB
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csproj.CoreCompileInputs.cache
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.exe
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.pdb
-C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csprojResolveAssemblyReference.cache

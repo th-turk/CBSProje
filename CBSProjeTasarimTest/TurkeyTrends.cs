@@ -28,8 +28,7 @@ namespace CBSProjeTasarimTest
             InitializeComponent();
             trendleriAl("Türkiye");
         }
-
-
+        
         public void trendleriAl(string loc)
         {
             labelAralik = 0;
@@ -50,9 +49,14 @@ namespace CBSProjeTasarimTest
             for (int i = 0; i < trendler.Count; i++)
             {
                 HashTagler(trendler[i], i);
+                string trendUrl = twitter.GenerateHashtagString(trendler[i]);
+                List<Tweet> tweetler = twitter.GetTweetsByHashtag(trendUrl, trendler[i]);
+                twitter.FindUserLocation(tweetler);
             }
 
             
+
+
         }
 
         int labelAralik = 40;

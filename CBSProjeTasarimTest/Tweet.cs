@@ -15,6 +15,8 @@ namespace CBSProjeTasarimTest
         public string user = null;
         public string konum = null;
         public string tarih = null;
+        public Point point ;
+        public string[] konumlar;
         
         
         public Tweet(string id, string hastag)
@@ -28,15 +30,12 @@ namespace CBSProjeTasarimTest
             return new Point();
         }
 
-        public string KonumParset(string fullKonum)
+        public string[] KonumParset(string konumString)
         {
+            char[] patters = { '/', ',', '\n',';',' '};
 
-            return "";
-        }
-
-        private void RunScript(double a, double b, double Ax, double Ay, double Bx, double By, double Cx, double Cy, double Az, double Bz, double Cz, ref object Point)
-        {
-            
+            konumlar = konumString.Split(patters);
+            return konumlar;
         }
     }
 }

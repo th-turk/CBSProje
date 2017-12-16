@@ -338,7 +338,7 @@ namespace CBSProjeTasarimTest
             toolTip1.RemoveAll();
         }
         
-        //canlı twett gösterme tablosu 
+        //canlı tweet gösterme tablosu 
         private void tabloOlustur()
         {
             if (layerSayisi == 2) layerSayisi++;
