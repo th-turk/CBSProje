@@ -396,17 +396,18 @@ namespace CBSProjeTasarimTest
             }
             Form1.counter++;
             Tweet tweet = new Tweet("1"+counter,"türkiye"); 
-            tweet.konum = "ankara";
+            tweet.location = "kus";
             tweet.user = "tahaturk";
-            tweet.tarih = "11/22/2017";
-            Form1.mi.Do("Create point  into variable p (" + x + "," + y + ") Symbol MakeCustomSymbol (\"twitter-"+kus+".bmp\",0,12,0)");
-            Form1.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.user + "\",\"" + tweet.konum + "\",\"" + tweet.tarih + "\")");
+            tweet.date = "11/22/2017";
+            Form1.mi.Do("Create point  into variable p (" + x + "," + y + ") Symbol MakeCustomSymbol (\"TRUC-64.BMP\",0,12,0)");
+            Form1.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.user + "\",\"" + tweet.location + "\",\"" + tweet.date + "\")");
             Form1.mi.Do("Commit Table CANLI_TWEET");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            HaritayaTweetKoy(41.27694, 39.90861,"blue");
+            double[] loc= { 41.27694, 39.90861 };
+            HaritayaTweetKoy(loc[0], loc[1],"blue");
         }
         
     }

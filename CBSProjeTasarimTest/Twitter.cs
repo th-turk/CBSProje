@@ -14,7 +14,6 @@ namespace CBSProjeTasarimTest
         public String html;
         public Uri url;
         
-
         // return a list if  trends which is popular  in current moment 
         public void getTrends(String Url, List<string> CikanSonuc)
         {
@@ -219,7 +218,7 @@ namespace CBSProjeTasarimTest
                         string dateTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                         Tweet tweet = new Tweet(generateID(), hashtag);
                         tweet.user = nickname;
-                        tweet.tarih = dateTime;
+                        tweet.date = dateTime;
                         tweets.Add(tweet);
                     }
                 }
@@ -257,15 +256,15 @@ namespace CBSProjeTasarimTest
             foreach (var tweet in tweets)
             {
                 Console.WriteLine("geldim");
-                if (tweet.konum != null)
+                if (tweet.location != null)
                 {
                     Console.WriteLine("Tweet ID-> " + tweet.id);
                     Console.WriteLine("Tweet User-> " + tweet.user);
                     Console.WriteLine("Tweet HashTag-> " + tweet.hastag);
-                    Console.WriteLine("Tweet Tarih-> " + tweet.tarih);
-                    foreach (var item in tweet.konumlar)
+                    Console.WriteLine("Tweet Tarih-> " + tweet.date);
+                    foreach (var item in tweet.locations)
                     {
-                        Console.WriteLine("Tweet Konum "+item+"-> " + item);
+                        Console.WriteLine("Tweet Konum "+ tweet.locations.ToList().IndexOf(item) + "-> " + item);
                     }
                     Console.WriteLine("\n************\n");
                 }
@@ -341,8 +340,8 @@ namespace CBSProjeTasarimTest
                     adres = adres.Replace(" ", String.Empty);
                     if (adres != null && adres != "" && adres != String.Empty && adres != "\n")
                     {
-                        tweet.konum = adres;
-                        tweet.KonumParset(adres);
+                        tweet.location = adres;
+                        tweet.LocationParse(adres);
                     }
                 }
             }

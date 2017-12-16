@@ -13,10 +13,10 @@ namespace CBSProjeTasarimTest
         public string id;
         public string hastag;
         public string user = null;
-        public string konum = null;
-        public string tarih = null;
+        public string location = null;
+        public string date = null;
         public Point point ;
-        public string[] konumlar;
+        public string[] locations;
         
         
         public Tweet(string id, string hastag)
@@ -27,15 +27,40 @@ namespace CBSProjeTasarimTest
         
         public Point KonumOlustur(Point[] noktalar)
         {
+
             return new Point();
         }
 
-        public string[] KonumParset(string konumString)
+        public void LocationParse(string locationStr)
         {
             char[] patters = { '/', ',', '\n',';',' '};
+            locations = locationStr.Split(patters);
+        }
 
-            konumlar = konumString.Split(patters);
-            return konumlar;
+        public double[] GenerateLocationNearly(double x0, double y0, int radius)
+        {
+            Random random = new Random();
+
+            // Convert radius from meters to degrees
+            double radiusInDegrees = radius / 111000f;
+
+            double u = random.NextDouble();
+            double v = random.NextDouble();
+            double w = radiusInDegrees * Math.Sqrt(u);
+            double t = 2 * Math.PI * v;
+            double x = w * Math.Cos(t);
+            double y = w * Math.Sin(t);
+
+            // Adjust the x-coordinate for the shrinking of the east-west distances
+            double y0Radians = (Math.PI / 180) * y0;
+            double new_x = x / Math.Cos(y0Radians);
+
+            double foundLongitude = Math.Round((new_x + x0), 5);
+            double foundLatitude = Math.Round((y + y0), 5);
+
+            //MessageBox.Show("Longitude: " + foundLongitude + "  Latitude: " + foundLatitude);
+            double[] loc = { foundLongitude, foundLatitude };
+            return loc;
         }
     }
 }
