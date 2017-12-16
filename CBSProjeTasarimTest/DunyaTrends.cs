@@ -60,9 +60,6 @@ namespace CBSProjeTasarimTest
                                     Color.Turquoise,Color.Yellow,Color.Green,
                                         Color.Blue,Color.Gray,Color.DarkBlue,Color.Brown};
             
-
-            
-
             Label tag = new Label();
             panel1.Controls.Add(tag);
             tag.Top = labelAralik;

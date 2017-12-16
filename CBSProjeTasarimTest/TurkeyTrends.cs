@@ -51,6 +51,8 @@ namespace CBSProjeTasarimTest
             {
                 HashTagler(trendler[i], i);
             }
+
+            
         }
 
         int labelAralik = 40;

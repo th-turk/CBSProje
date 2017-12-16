@@ -399,7 +399,7 @@ namespace CBSProjeTasarimTest
             tweet.konum = "ankara";
             tweet.user = "tahaturk";
             tweet.tarih = "11/22/2017";
-            Form1.mi.Do("Create point  into variable p (" + x + "," + y + ") Symbol MakeCustomSymbol (\"twitter-"+kus+".png\",0,12,0)");
+            Form1.mi.Do("Create point  into variable p (" + x + "," + y + ") Symbol MakeCustomSymbol (\"twitter-"+kus+".bmp\",0,12,0)");
             Form1.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.user + "\",\"" + tweet.konum + "\",\"" + tweet.tarih + "\")");
             Form1.mi.Do("Commit Table CANLI_TWEET");
         }
@@ -408,9 +408,7 @@ namespace CBSProjeTasarimTest
         {
             HaritayaTweetKoy(41.27694, 39.90861,"blue");
         }
-
         
     }
-
-   
+    
 }
