@@ -17,7 +17,7 @@ namespace CBSProjeTasarimTest
         public string location = null;
         public string date = null;
         public double lat;
-        public double lon
+        public double lon;
         public string[] locations;
         
         
@@ -27,12 +27,7 @@ namespace CBSProjeTasarimTest
             this.hastag = hastag;
         }
         
-        public Point KonumOlustur(Point[] noktalar)
-        {
-
-            return new Point();
-        }
-
+        //parse location by dedicated characters 
         public void LocationParse(string locationStr)
         {
             char[] patters = { '/', ',', '\n',';',' '};
@@ -40,11 +35,97 @@ namespace CBSProjeTasarimTest
 
             foreach (var loc in locations)
             {
-                MatchLocation
+                MatchLocation(loc);
+            }
+        }
+        
+        //find if locations include any of real location in database
+        public void MatchLocation(string loc)
+        {
+            DataAccess db = new DataAccess();
+
+            List<City> cities = db.GetCities();
+            List<District> districts = db.GetDistrict();
+
+            // if location not setted then  look for city 
+            if(location == null)
+            {
+                foreach (var city in cities)
+                {
+                    LocationSimilarity(loc, city);
+                    if (location != null)
+                        break;
+                }
+            }
+
+            if (location == null)
+            {
+                foreach (var district in districts)
+                {
+                    LocationSimilarity(loc, district);
+                    if (location != null)
+                        break;
+                }
+            }
+
+        }
+
+        // calculate ratio of founded string with matched city location
+        public void LocationSimilarity(string foundedLocation, City c)
+        {
+            foundedLocation = foundedLocation.ToLower();
+            string realLocation = c.cityName.ToLower();
+            float sum1 = 0, sum2 = 0;
+
+            for (int i = 0; i < realLocation.Length; i++)
+            {
+                int x = Convert.ToInt16(realLocation[i]);
+                int y = Convert.ToInt16(foundedLocation[i]);
+                sum1 += x;
+                sum2 += y;
+            }
+
+            float rate=0;
+            if (sum1 > sum2) rate = (sum2 / sum1) * 100;
+            
+            if(rate > 75)
+            {
+                location = c.cityName;
+                double[] locKord = GenerateLocationNearly(c.lat, c.lon);
+                this.lat = locKord[0];
+                this.lon = locKord[1];
             }
         }
 
-        public double[] GenerateLocationNearly(double x0, double y0, int radius)
+        // calculate ratio of founded string with matched District location
+        public void LocationSimilarity(string foundedLocation, District d)
+        {
+            foundedLocation = foundedLocation.ToLower();
+            string realLocation = d.districtName.ToLower();
+            float sum1 = 0, sum2 = 0;
+
+            for (int i = 0; i < realLocation.Length; i++)
+            {
+                int x = Convert.ToInt16(realLocation[i]);
+                int y = Convert.ToInt16(foundedLocation[i]);
+                sum1 += x;
+                sum2 += y;
+            }
+
+            float rate = 0;
+            if (sum1 > sum2) rate = (sum2 / sum1) * 100;
+
+            if (rate > 75)
+            {
+                this.location = d.districtName+"("+d.city_id+")";
+                double[] locKord = GenerateLocationNearly(d.lat, d.lon,10000);
+                this.lat = locKord[0];
+                this.lon = locKord[1];
+            }
+        }
+
+        //generate a location which is in 40000 meters radious an circle with given lat and  lon
+        public double[] GenerateLocationNearly(double x0, double y0, int radius = 40000)
         {
             Random random = new Random();
 
@@ -70,19 +151,5 @@ namespace CBSProjeTasarimTest
             return loc;
         }
 
-        public void MatchLocation(string loc)
-        {
-            DataAccess db = new DataAccess();
-
-            List<City> cities = db.GetCitys();
-
-            foreach (var city in cities)
-            {
-                Console.WriteLine("City name :" + city.cityName.ToLower());
-                Console.WriteLine("City lat :" + city.lat);
-                Console.WriteLine("City lon :" + city.lon);
-            }
-        }
-        
     }
 }

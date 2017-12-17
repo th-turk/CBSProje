@@ -412,8 +412,7 @@ namespace CBSProjeTasarimTest
         private void button2_Click(object sender, EventArgs e)
         {
             Tweet t = new Tweet("a","a");
-
-            t.MatchLocation();
+                      
         }
     }
     

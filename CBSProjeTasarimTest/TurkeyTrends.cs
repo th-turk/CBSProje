@@ -26,37 +26,37 @@ namespace CBSProjeTasarimTest
         public TurkeyTrends()
         {
             InitializeComponent();
-            trendleriAl("Türkiye");
+            GetTrends("Türkiye");
         }
         
-        public void trendleriAl(string loc)
+        public void GetTrends(string loc)
         {
-            labelAralik = 0;
+            labelDistance = 0;
             Twitter twitter = new Twitter();
-            List<string> trendler = new List<string>();
+            List<string> trends = new List<string>();
             
-            twitter.getTrends(loc, trendler);
+            twitter.getTrends(loc, trends);
 
-            Label baslik = new Label();
-            panel1.Controls.Add(baslik);
-            baslik.AutoSize = true;
-            baslik.Text = loc + " Trendleri";
-            baslik.Location = new Point(30, 0);
-            //baslik.Font = new Font("Myanmar Text", 12, FontStyle.Bold);
-            baslik.ForeColor = Color.Black;
-            labelAralik += 40;
+            Label title = new Label();
+            panel1.Controls.Add(title);
+            title.AutoSize = true;
+            title.Text = loc + " Trendleri";
+            title.Location = new Point(30, 0);
+            title.ForeColor = Color.Black;
+            labelDistance += 40;
 
-            for (int i = 0; i < trendler.Count; i++)
+            //
+            for (int i = 0; i < 1; i++)
             {
-                HashTagler(trendler[i], i);
+                HashTagler(trends[i], i);
 
-                string trendUrl = twitter.GenerateHashtagString(trendler[i]);
-                List<Tweet> tweetler = twitter.GetTweetsByHashtag(trendUrl, trendler[i]);
+                string trendUrl = twitter.GenerateHashtagString(trends[i]);
+                List<Tweet> tweetler = twitter.GetTweetsByHashtag(trendUrl, trends[i]);
                 twitter.FindUserLocation(tweetler);
             }
         }
 
-        int labelAralik = 40;
+        int labelDistance = 40;
         //Hashtagler için Label oluşturma
         public Label HashTagler(string tagname, int i)
         {
@@ -69,7 +69,7 @@ namespace CBSProjeTasarimTest
 
             Label tag = new Label();
             panel1.Controls.Add(tag);
-            tag.Top = labelAralik;
+            tag.Top = labelDistance;
             tag.Left = 15;
             tag.AutoSize = true;
             tag.Name = randomColor[i].Name;
@@ -77,7 +77,7 @@ namespace CBSProjeTasarimTest
             tag.Font = new Font(FontFamily.GenericSansSerif, 11, FontStyle.Bold);
             tag.ForeColor = randomColor[i];
             tag.Visible = true;
-            labelAralik += 30;
+            labelDistance += 30;
             return tag;
         }
     }

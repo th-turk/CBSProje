@@ -8,5 +8,22 @@ namespace DatabaseSession
 {
     public class District
     {
+        public int id { get; set; }
+        public int city_id { get; set; }
+        public string districtName { get; set; }
+        public double lat { get; set; }
+        public double lon { get; set; }
+        public double northeast_lat { get; set; }
+        public double northeast_lng { get; set; }
+        public double southwest_lat { get; set; }
+        public double southwest_lng { get; set; }
+
+        public string FullInfo
+        {
+            get
+            {
+                return $"{districtName} ({lat},{lon})";
+            }
+        }
     }
 }
