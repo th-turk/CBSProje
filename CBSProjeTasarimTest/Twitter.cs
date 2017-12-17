@@ -255,17 +255,15 @@ namespace CBSProjeTasarimTest
             //Display all tweets which have location
             foreach (var tweet in tweets)
             {
-                Console.WriteLine("geldim");
                 if (tweet.location != null)
                 {
                     Console.WriteLine("Tweet ID-> " + tweet.id);
                     Console.WriteLine("Tweet User-> " + tweet.user);
                     Console.WriteLine("Tweet HashTag-> " + tweet.hastag);
                     Console.WriteLine("Tweet Tarih-> " + tweet.date);
-                    foreach (var item in tweet.locations)
-                    {
-                        Console.WriteLine("Tweet Konum "+ tweet.locations.ToList().IndexOf(item) + "-> " + item);
-                    }
+                    Console.WriteLine("Tweet location-> " + tweet.location);
+                    Console.WriteLine("Tweet lat-> " + tweet.lat);
+                    Console.WriteLine("Tweet lon-> " + tweet.lon);
                     Console.WriteLine("\n************\n");
                 }
             }
