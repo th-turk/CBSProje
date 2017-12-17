@@ -48,17 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DunyaTrends.cs">
+    <Compile Include="WorldTrends.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DunyaTrends.Designer.cs">
-      <DependentUpon>DunyaTrends.cs</DependentUpon>
+    <Compile Include="WorldTrends.Designer.cs">
+      <DependentUpon>WorldTrends.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Maps.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Maps.Designer.cs">
+      <DependentUpon>Maps.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,11 +70,11 @@
     </Compile>
     <Compile Include="Tweet.cs" />
     <Compile Include="Twitter.cs" />
-    <EmbeddedResource Include="DunyaTrends.resx">
-      <DependentUpon>DunyaTrends.cs</DependentUpon>
+    <EmbeddedResource Include="WorldTrends.resx">
+      <DependentUpon>WorldTrends.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Maps.resx">
+      <DependentUpon>Maps.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -146,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseSession\DatabaseSession.csproj">
+      <Project>{abd5c860-a104-489e-add7-cd459fa87359}</Project>
+      <Name>DatabaseSession</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,17 @@
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\CBSProjeTasarimTest.exe.config
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\CBSProjeTasarimTest.exe
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\CBSProjeTasarimTest.pdb
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\HtmlAgilityPack.dll
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\HtmlAgilityPack.xml
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProje-TwitterGIS.csprojResolveAssemblyReference.cache
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\Interop.MapInfo.dll
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProje-TwitterGIS.csproj.ResolveComReference.cache
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.Properties.Resources.resources
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.TurkeyTrends.resources
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProje-TwitterGIS.csproj.GenerateResource.Cache
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProje-TwitterGIS.csproj.CoreCompileInputs.cache
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.exe
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.pdb
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.Maps.resources
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.WorldTrends.resources

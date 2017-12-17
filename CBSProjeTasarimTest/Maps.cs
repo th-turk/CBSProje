@@ -11,10 +11,9 @@ using MapInfo;
 using System.Runtime.InteropServices;
 using System.IO;
 
-
 namespace CBSProjeTasarimTest
 {
-    public partial class Form1 : Form
+    public partial class Maps : Form
     {
         string path = Path.GetDirectoryName(
                          Path.GetDirectoryName(
@@ -23,7 +22,7 @@ namespace CBSProjeTasarimTest
         public static int counter = 0;
 
         public int layerSayisi = 2;
-        public Form1()
+        public Maps()
         {
             InitializeComponent();
             simgeDurKuc.Visible = false;
@@ -49,13 +48,13 @@ namespace CBSProjeTasarimTest
             mi.Do("run application \"" + "d:/haritalar2.WOR" + "\"");
 
 
-            if (!tags.Contains(DunyaTrends.Instance))
+            if (!tags.Contains(WorldTrends.Instance))
             {
-                tags.Controls.Add(DunyaTrends.Instance);
-                DunyaTrends.Instance.Dock = DockStyle.Fill;
-                DunyaTrends.Instance.BringToFront();
+                tags.Controls.Add(WorldTrends.Instance);
+                WorldTrends.Instance.Dock = DockStyle.Fill;
+                WorldTrends.Instance.BringToFront();
             }
-            else DunyaTrends.Instance.BringToFront();
+            else WorldTrends.Instance.BringToFront();
             
         }
 
@@ -169,13 +168,13 @@ namespace CBSProjeTasarimTest
             mi.Do("Set Map  Layer "+ (layerSayisi - 1) + " Editable On");
 
            
-            if (!tags.Contains(DunyaTrends.Instance))
+            if (!tags.Contains(WorldTrends.Instance))
             {
-                tags.Controls.Add(DunyaTrends.Instance);
-                DunyaTrends.Instance.Dock = DockStyle.Fill;
-                DunyaTrends.Instance.BringToFront();
+                tags.Controls.Add(WorldTrends.Instance);
+                WorldTrends.Instance.Dock = DockStyle.Fill;
+                WorldTrends.Instance.BringToFront();
             }
-            else DunyaTrends.Instance.BringToFront();
+            else WorldTrends.Instance.BringToFront();
             
         }
 
@@ -391,17 +390,17 @@ namespace CBSProjeTasarimTest
             if (counter == 0)
             {
                 tabloOlustur();
-                Form1.mi.Do("dim p as object");
+                Maps.mi.Do("dim p as object");
                 
             }
-            Form1.counter++;
+            Maps.counter++;
             Tweet tweet = new Tweet("1"+counter,"türkiye"); 
             tweet.location = "kus";
             tweet.user = "tahaturk";
             tweet.date = "11/22/2017";
-            Form1.mi.Do("Create point  into variable p (" + x + "," + y + ") Symbol MakeCustomSymbol (\"TRUC-64.BMP\",0,12,0)");
-            Form1.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.user + "\",\"" + tweet.location + "\",\"" + tweet.date + "\")");
-            Form1.mi.Do("Commit Table CANLI_TWEET");
+            Maps.mi.Do("Create point  into variable p (" + x + "," + y + ") Symbol MakeCustomSymbol (\"TRUC-64.BMP\",0,12,0)");
+            Maps.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.user + "\",\"" + tweet.location + "\",\"" + tweet.date + "\")");
+            Maps.mi.Do("Commit Table CANLI_TWEET");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -409,7 +408,13 @@ namespace CBSProjeTasarimTest
             double[] loc= { 41.27694, 39.90861 };
             HaritayaTweetKoy(loc[0], loc[1],"blue");
         }
-        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Tweet t = new Tweet("a","a");
+
+            t.MatchLocation();
+        }
     }
     
 }

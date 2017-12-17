@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using DatabaseSession;
 
 namespace CBSProjeTasarimTest
 {
@@ -15,7 +16,8 @@ namespace CBSProjeTasarimTest
         public string user = null;
         public string location = null;
         public string date = null;
-        public Point point ;
+        public double lat;
+        public double lon
         public string[] locations;
         
         
@@ -35,6 +37,11 @@ namespace CBSProjeTasarimTest
         {
             char[] patters = { '/', ',', '\n',';',' '};
             locations = locationStr.Split(patters);
+
+            foreach (var loc in locations)
+            {
+                MatchLocation
+            }
         }
 
         public double[] GenerateLocationNearly(double x0, double y0, int radius)
@@ -62,5 +69,20 @@ namespace CBSProjeTasarimTest
             double[] loc = { foundLongitude, foundLatitude };
             return loc;
         }
+
+        public void MatchLocation(string loc)
+        {
+            DataAccess db = new DataAccess();
+
+            List<City> cities = db.GetCitys();
+
+            foreach (var city in cities)
+            {
+                Console.WriteLine("City name :" + city.cityName.ToLower());
+                Console.WriteLine("City lat :" + city.lat);
+                Console.WriteLine("City lon :" + city.lon);
+            }
+        }
+        
     }
 }

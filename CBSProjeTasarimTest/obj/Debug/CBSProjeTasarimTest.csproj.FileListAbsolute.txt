@@ -6,8 +6,6 @@ C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\Ht
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\HtmlAgilityPack.xml
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\Interop.MapInfo.dll
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csproj.ResolveComReference.cache
-C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.DunyaTrends.resources
-C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.Form1.resources
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.Properties.Resources.resources
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.TurkeyTrends.resources
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csproj.GenerateResource.Cache
@@ -15,3 +13,9 @@ C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CB
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.exe
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.pdb
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.csprojResolveAssemblyReference.cache
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\DatabaseSession.dll
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\Dapper.dll
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\DatabaseSession.pdb
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\Dapper.xml
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.WorldTrends.resources
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.Maps.resources

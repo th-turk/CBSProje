@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace CBSProjeTasarimTest
 {
-    public partial class DunyaTrends : UserControl
+    public partial class WorldTrends : UserControl
     {
-        private static DunyaTrends _instance;
-        public static DunyaTrends Instance
+        private static WorldTrends _instance;
+        public static WorldTrends Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new DunyaTrends();
+                    _instance = new WorldTrends();
                 return _instance;
             }
         }
-        public DunyaTrends()
+        public WorldTrends()
         {
             InitializeComponent();
             trendleriAl("Dünya");

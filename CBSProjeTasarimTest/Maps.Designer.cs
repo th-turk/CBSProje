@@ -1,6 +1,6 @@
 ﻿namespace CBSProjeTasarimTest
 {
-    partial class Form1
+    partial class Maps
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Maps));
             this.leftSideBar = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.sliderButton = new System.Windows.Forms.Button();
@@ -54,11 +54,12 @@
             this.logo = new System.Windows.Forms.PictureBox();
             this.containerMap = new System.Windows.Forms.Panel();
             this.map = new System.Windows.Forms.Panel();
+            this.tags = new System.Windows.Forms.Panel();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
-            this.tags = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.leftSideBar.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -403,6 +404,14 @@
             this.map.Size = new System.Drawing.Size(555, 379);
             this.map.TabIndex = 1;
             // 
+            // tags
+            // 
+            this.tags.Dock = System.Windows.Forms.DockStyle.Right;
+            this.tags.Location = new System.Drawing.Point(555, 0);
+            this.tags.Name = "tags";
+            this.tags.Size = new System.Drawing.Size(204, 379);
+            this.tags.TabIndex = 0;
+            // 
             // notifyIcon
             // 
             this.notifyIcon.Text = "GaziCBS";
@@ -422,20 +431,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // tags
+            // button2
             // 
-            this.tags.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tags.Location = new System.Drawing.Point(555, 0);
-            this.tags.Name = "tags";
-            this.tags.Size = new System.Drawing.Size(204, 379);
-            this.tags.TabIndex = 0;
+            this.button2.Location = new System.Drawing.Point(389, 56);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // Form1
+            // Maps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(236)))), ((int)(((byte)(240)))));
             this.ClientSize = new System.Drawing.Size(928, 510);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.rightTopCont);
             this.Controls.Add(this.containerMap);
@@ -444,7 +456,7 @@
             this.Controls.Add(this.leftSideBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
-            this.Name = "Form1";
+            this.Name = "Maps";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -494,6 +506,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel tags;
+        private System.Windows.Forms.Button button2;
     }
 }
 
