@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HtmlAgilityPack;
 using System.Windows.Forms;
 using System.Net;
+using DatabaseSession;
 
 namespace CBSProjeTasarimTest
 {
@@ -251,12 +252,24 @@ namespace CBSProjeTasarimTest
                 string tempUrlAdress = urlAdress + tweets[i].user.ToString();
                  tweets[i]= ScrapeAdress(tempUrlAdress, tweets[i]);
             }
-
+            List<TweetDB> tweetDB = new List<TweetDB>();
             //Display all tweets which have location
             foreach (var tweet in tweets)
             {
                 if (tweet.location != null)
                 {
+                    TweetDB tw = new TweetDB();
+                    tw.id = tweet.id;
+                    tw.hastag = tweet.hastag;
+                    tw.tweeted_user = tweet.user;
+                    tw.tweeted_date = tweet.date;
+                    tw.tweeted_location = tweet.location;
+                    tw.lat = tweet.lat;
+                    tw.lon = tweet.lon;
+
+                    tweetDB.Add(tw);
+
+
                     Console.WriteLine("Tweet ID-> " + tweet.id);
                     Console.WriteLine("Tweet User-> " + tweet.user);
                     Console.WriteLine("Tweet HashTag-> " + tweet.hastag);
@@ -265,8 +278,13 @@ namespace CBSProjeTasarimTest
                     Console.WriteLine("Tweet lat-> " + tweet.lat);
                     Console.WriteLine("Tweet lon-> " + tweet.lon);
                     Console.WriteLine("\n************\n");
+
+
                 }
             }
+            DataAccess db = new DataAccess();
+            db.InsertTweets(tweetDB);
+
         }
 
         //scrape the user page and  set tweet's location is its exist

@@ -46,9 +46,9 @@ namespace CBSProjeTasarimTest
             labelDistance += 40;
 
             //
-            // trends.toArray().Length for i<1
+            // trends.ToArray().Length for i<1
             //
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < trends.ToArray().Length; i++)
             {
                 HashTagler(trends[i], i);
 
@@ -56,6 +56,9 @@ namespace CBSProjeTasarimTest
                 List<Tweet> tweetler = twitter.GetTweetsByHashtag(trendUrl, trends[i]);
                 twitter.FindUserLocation(tweetler);
             }
+                
+           
+            
         }
 
         int labelDistance = 40;

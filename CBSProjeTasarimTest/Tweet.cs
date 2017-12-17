@@ -20,7 +20,6 @@ namespace CBSProjeTasarimTest
         public double lon;
         public string[] locations;
         
-        
         public Tweet(string id, string hastag)
         {
             this.id = id;
@@ -75,29 +74,29 @@ namespace CBSProjeTasarimTest
         {
             foundedLocation = foundedLocation.ToLower();
             string realLocation = c.cityName.ToLower();
-            float sum1 = 0, sum2 = 0;
-
             
-            for (int i = 0; i < realLocation.Length; i++)
-            {
-                int y=0;
-                int x = Convert.ToInt16(realLocation[i]);
-                if(foundedLocation.Length >i)
-                     y= Convert.ToInt16(foundedLocation[i]);
-                sum1 += x;
-                sum2 += y;
-            }
 
-            float rate=0;
-            if (sum1 > sum2) rate = (sum2 / sum1) * 100;
-            
-            if(rate > 75)
+            if (realLocation.Length == foundedLocation.Length)
             {
-                location = c.cityName;
-                double[] locKord = GenerateLocationNearly(c.lat, c.lon);
-                lat = locKord[0];
-                lon = locKord[1];
+                double rate = 0;
+                for (int i = 0; i < realLocation.Length; i++)
+                {
+                    if (realLocation[i] == foundedLocation[i])
+                        rate++;
+                    else rate--;
+                }
+
+                rate = rate / realLocation.Length*100;
+               
+                if (rate > 19)
+                {
+                    location = c.cityName;
+                    double[] locKord = GenerateLocationNearly(c.lat, c.lon);
+                    lat = locKord[0];
+                    lon = locKord[1];
+                }
             }
+                
         }
 
         // calculate ratio of founded string with matched District location
@@ -105,26 +104,30 @@ namespace CBSProjeTasarimTest
         {
             foundedLocation = foundedLocation.ToLower();
             string realLocation = d.districtName.ToLower();
-            float sum1 = 0, sum2 = 0;
+           
 
-            for (int i = 0; i < realLocation.Length; i++)
+
+            if (realLocation.Length == foundedLocation.Length)
             {
-                int x = Convert.ToInt16(realLocation[i]);
-                int y = Convert.ToInt16(foundedLocation[i]);
-                sum1 += x;
-                sum2 += y;
-            }
+                double rate = 0;
+                for (int i = 0; i < realLocation.Length; i++)
+                {
+                    if (realLocation[i] == foundedLocation[i])
+                        rate++;
+                    else rate--;
+                }
 
-            float rate = 0;
-            if (sum1 > sum2) rate = (sum2 / sum1) * 100;
+                rate = rate / realLocation.Length*100;
 
-            if (rate > 75)
-            {
-                location = d.districtName+"("+d.city_id+")";
-                double[] locKord = GenerateLocationNearly(d.lat, d.lon,10000);
-                lat = locKord[0];
-                lon = locKord[1];
+                if (rate > 19)
+                {
+                    location = d.districtName + "(" + d.city_id + ")";
+                    double[] locKord = GenerateLocationNearly(d.lat, d.lon, 10000);
+                    lat = locKord[0];
+                    lon = locKord[1];
+                }
             }
+            
         }
 
         //generate a location which is in 40000 meters radious an circle with given lat and  lon

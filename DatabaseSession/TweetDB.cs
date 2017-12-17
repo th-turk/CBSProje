@@ -10,9 +10,9 @@ namespace DatabaseSession
     {
         public string id { get; set; }
         public string hastag { get; set; }
-        public string user { get; set; }
-        public string location { get; set; }
-        public string date { get; set; }
+        public string tweeted_user { get; set; }
+        public string tweeted_location { get; set; }
+        public string tweeted_date { get; set; }
         public double lat { get; set; }
         public double lon { get; set; }
         
