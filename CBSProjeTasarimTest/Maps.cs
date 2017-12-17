@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MapInfo;
 using System.Runtime.InteropServices;
 using System.IO;
+using DatabaseSession;
 
 namespace CBSProjeTasarimTest
 {
@@ -29,6 +30,8 @@ namespace CBSProjeTasarimTest
             FormBorderStyle = FormBorderStyle.None;
             sliderHided=true;
             iconsSlider.Width = 0;
+
+            DeleteTweetTable();
 
         }
 
@@ -175,12 +178,21 @@ namespace CBSProjeTasarimTest
                 WorldTrends.Instance.BringToFront();
             }
             else WorldTrends.Instance.BringToFront();
-            
+
+
+            if (layerSayisi == 3)
+            {
+                DeleteTweetTable();
+                createLiveTweetsTable();
+            }
+            else
+            {
+                createLiveTweetsTable();
+            }
         }
 
         private void turkiye_Click(object sender, EventArgs e)
         {
-
             if (!tags.Contains(TurkeyTrends.Instance))
             {
                 tags.Controls.Add(TurkeyTrends.Instance);
@@ -188,6 +200,8 @@ namespace CBSProjeTasarimTest
                 TurkeyTrends.Instance.BringToFront();
             }
             else TurkeyTrends.Instance.BringToFront();
+
+
 
             sidePanel.Height = turkiye.Height;
             turkiye.BackColor = selected;
@@ -201,6 +215,23 @@ namespace CBSProjeTasarimTest
             mi.Do("Set Map  Zoom Entire Layer "+(layerSayisi-1));
             mi.Do("Set Map  Layer "+ (layerSayisi ) + " Editable On");
             mi.Do("Set Map  Layer "+ (layerSayisi ) + " Editable On");
+
+
+            if (layerSayisi == 3)
+            {
+                DeleteTweetTable();
+                createLiveTweetsTable();
+            }
+            else
+            {
+                createLiveTweetsTable();
+            }
+            DataAccess db = new DataAccess();
+
+            List<TweetDB> twDB;
+            twDB = db.GetAllTweets();
+
+            PutTweetsOnMap(twDB);
             
         }
 
@@ -216,6 +247,8 @@ namespace CBSProjeTasarimTest
             panel2.Visible = false;
             
         }
+
+
         private void sideBarReset()
         {
             panel2.Visible = true;
@@ -338,7 +371,7 @@ namespace CBSProjeTasarimTest
         }
         
         //canlı tweet gösterme tablosu 
-        private void tabloOlustur()
+        private void createLiveTweetsTable()
         {
             if (layerSayisi == 2) layerSayisi++;
             try
@@ -384,103 +417,59 @@ namespace CBSProjeTasarimTest
             }
         }
 
-        
-        public void HaritayaTweetKoy(double x,double y,string kus)
+        //canlı tweet tablosu silme
+        private void DeleteTweetTable()
         {
+            if (layerSayisi == 3)
+            {
+                mi.Do("close table CANLI_TWEET");
+                layerSayisi--;
+            }
+            if (File.Exists(path + "\\Resources\\CANLI_TWEET.TAB"))
+            {
+                File.Delete(path + "\\Resources\\CANLI_TWEET.TAB");
+                if(File.Exists(path + "\\Resources\\CANLI_TWEET.DAT"))
+                    File.Delete(path + "\\Resources\\CANLI_TWEET.DAT");
+                if(File.Exists(path + "\\Resources\\CANLI_TWEET.MAP"))
+                    File.Delete(path + "\\Resources\\CANLI_TWEET.MAP");
+                if(File.Exists(path + "\\Resources\\CANLI_TWEET.ID"))
+                    File.Delete(path + "\\Resources\\CANLI_TWEET.ID");
+            }
+        }
+
+        // get all tweets adn  display them on a map
+        public void PutTweetsOnMap(List<TweetDB> tweetDB)
+        {
+            createLiveTweetsTable();
             if (counter == 0)
             {
-                tabloOlustur();
                 Maps.mi.Do("dim p as object");
-                
             }
             Maps.counter++;
-            Tweet tweet = new Tweet("1"+counter,"türkiye"); 
-            tweet.location = "kus";
-            tweet.user = "tahaturk";
-            tweet.date = "11/22/2017";
-            Maps.mi.Do("Create point  into variable p (" + x + "," + y + ") Symbol MakeCustomSymbol (\"TRUC-64.BMP\",0,12,0)");
-            Maps.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.user + "\",\"" + tweet.location + "\",\"" + tweet.date + "\")");
+            foreach (var tweet in tweetDB)
+            {
+                Maps.mi.Do("Create point  into variable p (" + tweet.lon + "," + tweet.lat + ") Symbol MakeCustomSymbol (\"TRUC-64.BMP\",0,12,0)");
+                Maps.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.tweeted_user + "\",\"" + tweet.tweeted_location + "\",\"" + tweet.tweeted_date + "\")");
+                
+            }
             Maps.mi.Do("Commit Table CANLI_TWEET");
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            double[] loc= { 41.27694, 39.90861 };
-            HaritayaTweetKoy(loc[0], loc[1],"blue");
+            //double[] loc= { 41.27694, 39.90861 };
+            //HaritayaTweetKoy(loc[0], loc[1],);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-           MessageBox.Show(Convert.ToString(LocationSimilarity("köprüköy", "koprukoy")));
+           
         }
 
-        public double LocationSimilarity(string foundedLocation, string realLocation)
-        {
-            foundedLocation = foundedLocation.ToLower();
-            realLocation = realLocation.ToLower();
+        
 
-            double rate = 0;
-            if (realLocation.Length == foundedLocation.Length)
-            {
-                for (int i = 0; i < realLocation.Length; i++)
-                {
-                    if (realLocation[i] == foundedLocation[i])
-                        rate++;
-                    else rate--;
-                }
-
-                rate = rate / realLocation.Length*100;
-                
-            }
-            return rate;
-
-        }
-        public double CalculateSimilarity(string source, string target)
-        {
-            if ((source == null) || (target == null)) return 0.0;
-            if ((source.Length == 0) || (target.Length == 0)) return 0.0;
-            if (source == target) return 1.0;
-
-            int stepsToSame = ComputeLevenshteinDistance(source, target);
-            return (1.0 - ((double)stepsToSame / (double)Math.Max(source.Length, target.Length)));
-        }
-
-        public int ComputeLevenshteinDistance(string source, string target)
-        {
-            if ((source == null) || (target == null)) return 0;
-            if ((source.Length == 0) || (target.Length == 0)) return 0;
-            if (source == target) return source.Length;
-
-            int sourceWordCount = source.Length;
-            int targetWordCount = target.Length;
-
-            // Step 1
-            if (sourceWordCount == 0)
-                return targetWordCount;
-
-            if (targetWordCount == 0)
-                return sourceWordCount;
-
-            int[,] distance = new int[sourceWordCount + 1, targetWordCount + 1];
-
-            // Step 2
-            for (int i = 0; i <= sourceWordCount; distance[i, 0] = i++) ;
-            for (int j = 0; j <= targetWordCount; distance[0, j] = j++) ;
-
-            for (int i = 1; i <= sourceWordCount; i++)
-            {
-                for (int j = 1; j <= targetWordCount; j++)
-                {
-                    // Step 3
-                    int cost = (target[j - 1] == source[i - 1]) ? 0 : 1;
-
-                    // Step 4
-                    distance[i, j] = Math.Min(Math.Min(distance[i - 1, j] + 1, distance[i, j - 1] + 1), distance[i - 1, j - 1] + cost);
-                }
-            }
-
-            return distance[sourceWordCount, targetWordCount];
-        }
     }
     
 }

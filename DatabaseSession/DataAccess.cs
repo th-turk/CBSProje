@@ -40,5 +40,14 @@ namespace DatabaseSession
                 }
             }
         }
+
+        //Get Tweets 
+        public List<TweetDB> GetAllTweets()
+        {
+            using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("DB")))
+            {
+                return conn.Query<TweetDB>($"select top(250) * from tweet ").ToList();
+            }
+        }
     }
 }

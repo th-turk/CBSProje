@@ -26,7 +26,7 @@ namespace CBSProjeTasarimTest
         public TurkeyTrends()
         {
             InitializeComponent();
-            GetTrends("Türkiye");
+            //GetTrends("Türkiye");
         }
         
         public void GetTrends(string loc)
