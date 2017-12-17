@@ -14,11 +14,10 @@ namespace CBSProjeTasarimTest
         public string id;
         public string hastag;
         public string user = null;
-        public string locationTmp = null;
         public string location = null;
         public string date = null;
-        public double lat=0.1;
-        public double lon=0.1;
+        public double lat;
+        public double lon;
         public string[] locations;
         
         
@@ -46,7 +45,7 @@ namespace CBSProjeTasarimTest
             DataAccess db = new DataAccess();
 
             List<City> cities = db.GetCities();
-            List<District> districts = db.GetDistrict();
+            List<District> districts = db.GetDistricts();
 
             // if location not setted then  look for city 
             if(location == null)

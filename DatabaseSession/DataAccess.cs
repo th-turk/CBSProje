@@ -9,6 +9,7 @@ namespace DatabaseSession
 {
     public class DataAccess
     {
+        //get all Cities from database
         public List<City> GetCities()
         {
             using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("DB")))
@@ -17,6 +18,7 @@ namespace DatabaseSession
             } 
         }
 
+        //get all Districts from database
         public List<District> GetDistrict()
         {
             using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("DB")))
