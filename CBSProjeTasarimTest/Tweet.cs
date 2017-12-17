@@ -14,10 +14,11 @@ namespace CBSProjeTasarimTest
         public string id;
         public string hastag;
         public string user = null;
+        public string locationTmp = null;
         public string location = null;
         public string date = null;
-        public double lat;
-        public double lon;
+        public double lat=0.1;
+        public double lon=0.1;
         public string[] locations;
         
         
@@ -30,7 +31,7 @@ namespace CBSProjeTasarimTest
         //parse location by dedicated characters 
         public void LocationParse(string locationStr)
         {
-            char[] patters = { '/', ',', '\n',';',' '};
+            char[] patters = { '/', ',', '\n',';',' ','\\','.'};
             locations = locationStr.Split(patters);
 
             foreach (var loc in locations)
@@ -77,10 +78,13 @@ namespace CBSProjeTasarimTest
             string realLocation = c.cityName.ToLower();
             float sum1 = 0, sum2 = 0;
 
+            
             for (int i = 0; i < realLocation.Length; i++)
             {
+                int y=0;
                 int x = Convert.ToInt16(realLocation[i]);
-                int y = Convert.ToInt16(foundedLocation[i]);
+                if(foundedLocation.Length >i)
+                     y= Convert.ToInt16(foundedLocation[i]);
                 sum1 += x;
                 sum2 += y;
             }
@@ -92,8 +96,8 @@ namespace CBSProjeTasarimTest
             {
                 location = c.cityName;
                 double[] locKord = GenerateLocationNearly(c.lat, c.lon);
-                this.lat = locKord[0];
-                this.lon = locKord[1];
+                lat = locKord[0];
+                lon = locKord[1];
             }
         }
 
@@ -117,10 +121,10 @@ namespace CBSProjeTasarimTest
 
             if (rate > 75)
             {
-                this.location = d.districtName+"("+d.city_id+")";
+                location = d.districtName+"("+d.city_id+")";
                 double[] locKord = GenerateLocationNearly(d.lat, d.lon,10000);
-                this.lat = locKord[0];
-                this.lon = locKord[1];
+                lat = locKord[0];
+                lon = locKord[1];
             }
         }
 

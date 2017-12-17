@@ -411,7 +411,11 @@ namespace CBSProjeTasarimTest
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Tweet t = new Tweet("a","a");
+            //Tweet t = new Tweet("a","a");
+
+            //t.MatchLocation("Istanbul");
+
+            //MessageBox.Show(t.location+"\n" + t.lat + "\n" +t.lon+ "\n" );
                       
         }
     }

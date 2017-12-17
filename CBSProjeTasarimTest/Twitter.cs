@@ -338,7 +338,6 @@ namespace CBSProjeTasarimTest
                     adres = adres.Replace(" ", String.Empty);
                     if (adres != null && adres != "" && adres != String.Empty && adres != "\n")
                     {
-                        tweet.location = adres;
                         tweet.LocationParse(adres);
                     }
                 }
