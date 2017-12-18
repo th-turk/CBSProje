@@ -48,6 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Callback.cs" />
+    <Compile Include="TweetInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TweetInfo.Designer.cs">
+      <DependentUpon>TweetInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorldTrends.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -70,6 +77,9 @@
     </Compile>
     <Compile Include="Tweet.cs" />
     <Compile Include="Twitter.cs" />
+    <EmbeddedResource Include="TweetInfo.resx">
+      <DependentUpon>TweetInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WorldTrends.resx">
       <DependentUpon>WorldTrends.cs</DependentUpon>
     </EmbeddedResource>

@@ -18,6 +18,14 @@ namespace DatabaseSession
             } 
         }
 
+        //get all Cities from database
+        public List<string> GetCityName(int id)
+        {
+            using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("DB")))
+            {
+                return conn.Query<string>($"Select cityName from city where id={id}").ToList();
+            }
+        }
         //get all Districts from database
         public List<District> GetDistricts()
         {
@@ -35,8 +43,11 @@ namespace DatabaseSession
                 foreach (var tweet in tweetDB)
                 {
                     conn.Query($"INSERT INTO TWEET VALUES ('"+tweet.id+"'," +
-                        "'"+tweet.hastag+"','"+tweet.tweeted_user+"','"+tweet.tweeted_location+"'," +
-                        "Convert(datetime,'"+tweet.tweeted_date+"',103),'"+tweet.lat+"','"+tweet.lon+"')");
+                        "'"+tweet.hastag.Replace("\"", "&#39;").Replace("'", "&#39;") + "'," +
+                        "'"+tweet.tweeted_user.Replace("\"", "&#39;").Replace("'", "&#39;") + "'," +
+                        "'"+tweet.tweeted_location.Replace("\"", "&#39;").Replace("'", "&#39;") + "'," +
+                        "Convert(datetime,'"+tweet.tweeted_date.Replace("\"", "&#39;").Replace("'", "&#39;") + "',103)," +
+                        "'"+tweet.lat+"','"+tweet.lon+"')");
                 }
             }
         }
@@ -46,7 +57,16 @@ namespace DatabaseSession
         {
             using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("DB")))
             {
-                return conn.Query<TweetDB>($"select top(250) * from tweet ").ToList();
+                return conn.Query<TweetDB>($"select top(500) * from tweet ").ToList();
+            }
+        }
+
+        //Get Tweets with last 10 minutes
+        public List<TweetDB> GetTweetsInlast10Min()
+        {
+            using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("DB")))
+            {
+                return conn.Query<TweetDB>($"select * from tweet where tweeted_date > DateADD(mi, -12, GETDATE()); ").ToList();
             }
         }
     }

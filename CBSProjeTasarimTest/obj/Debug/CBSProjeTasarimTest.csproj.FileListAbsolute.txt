@@ -19,3 +19,4 @@ C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\Da
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\bin\Debug\Dapper.xml
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.WorldTrends.resources
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.Maps.resources
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\CBSProjeTasarimTest\obj\Debug\CBSProjeTasarimTest.TweetInfo.resources

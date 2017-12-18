@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DatabaseSession
 {
     public class District
@@ -18,11 +19,12 @@ namespace DatabaseSession
         public double southwest_lat { get; set; }
         public double southwest_lng { get; set; }
 
-        public string FullInfo
+        DataAccess db = new DataAccess();
+        public string CityName
         {
             get
             {
-                return $"{districtName} ({lat},{lon})";
+                return $"{db.GetCityName(city_id)}";
             }
         }
     }

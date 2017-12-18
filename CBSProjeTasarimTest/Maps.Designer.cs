@@ -43,8 +43,8 @@
             this.button8 = new System.Windows.Forms.Button();
             this.sidePanel = new System.Windows.Forms.Panel();
             this.stat = new System.Windows.Forms.Button();
-            this.turkiye = new System.Windows.Forms.Button();
-            this.dunya = new System.Windows.Forms.Button();
+            this.turkeyLive = new System.Windows.Forms.Button();
+            this.turkey = new System.Windows.Forms.Button();
             this.topBar = new System.Windows.Forms.Panel();
             this.rightTopCont = new System.Windows.Forms.Panel();
             this.close = new System.Windows.Forms.Button();
@@ -58,8 +58,6 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.leftSideBar.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -76,8 +74,8 @@
             this.leftSideBar.Controls.Add(this.panel2);
             this.leftSideBar.Controls.Add(this.sidePanel);
             this.leftSideBar.Controls.Add(this.stat);
-            this.leftSideBar.Controls.Add(this.turkiye);
-            this.leftSideBar.Controls.Add(this.dunya);
+            this.leftSideBar.Controls.Add(this.turkeyLive);
+            this.leftSideBar.Controls.Add(this.turkey);
             this.leftSideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftSideBar.Location = new System.Drawing.Point(0, 0);
             this.leftSideBar.Name = "leftSideBar";
@@ -268,41 +266,41 @@
             this.stat.UseVisualStyleBackColor = true;
             this.stat.Click += new System.EventHandler(this.stat_Click);
             // 
-            // turkiye
+            // turkeyLive
             // 
-            this.turkiye.FlatAppearance.BorderSize = 0;
-            this.turkiye.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.turkiye.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.turkiye.ForeColor = System.Drawing.Color.White;
-            this.turkiye.Image = ((System.Drawing.Image)(resources.GetObject("turkiye.Image")));
-            this.turkiye.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.turkiye.Location = new System.Drawing.Point(12, 123);
-            this.turkiye.Name = "turkiye";
-            this.turkiye.Size = new System.Drawing.Size(150, 45);
-            this.turkiye.TabIndex = 1;
-            this.turkiye.Text = "   TÜRKİYE";
-            this.turkiye.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.turkiye.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.turkiye.UseVisualStyleBackColor = true;
-            this.turkiye.Click += new System.EventHandler(this.turkiye_Click);
+            this.turkeyLive.FlatAppearance.BorderSize = 0;
+            this.turkeyLive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.turkeyLive.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.turkeyLive.ForeColor = System.Drawing.Color.White;
+            this.turkeyLive.Image = ((System.Drawing.Image)(resources.GetObject("turkeyLive.Image")));
+            this.turkeyLive.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.turkeyLive.Location = new System.Drawing.Point(12, 72);
+            this.turkeyLive.Name = "turkeyLive";
+            this.turkeyLive.Size = new System.Drawing.Size(150, 45);
+            this.turkeyLive.TabIndex = 1;
+            this.turkeyLive.Text = "   TURKEY LIVE";
+            this.turkeyLive.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.turkeyLive.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.turkeyLive.UseVisualStyleBackColor = true;
+            this.turkeyLive.Click += new System.EventHandler(this.turkiye_Click);
             // 
-            // dunya
+            // turkey
             // 
-            this.dunya.FlatAppearance.BorderSize = 0;
-            this.dunya.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dunya.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dunya.ForeColor = System.Drawing.Color.White;
-            this.dunya.Image = ((System.Drawing.Image)(resources.GetObject("dunya.Image")));
-            this.dunya.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dunya.Location = new System.Drawing.Point(12, 71);
-            this.dunya.Name = "dunya";
-            this.dunya.Size = new System.Drawing.Size(150, 45);
-            this.dunya.TabIndex = 0;
-            this.dunya.Text = "   DÜNYA";
-            this.dunya.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dunya.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.dunya.UseVisualStyleBackColor = true;
-            this.dunya.Click += new System.EventHandler(this.dunya_Click);
+            this.turkey.FlatAppearance.BorderSize = 0;
+            this.turkey.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.turkey.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.turkey.ForeColor = System.Drawing.Color.White;
+            this.turkey.Image = ((System.Drawing.Image)(resources.GetObject("turkey.Image")));
+            this.turkey.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.turkey.Location = new System.Drawing.Point(12, 123);
+            this.turkey.Name = "turkey";
+            this.turkey.Size = new System.Drawing.Size(150, 45);
+            this.turkey.TabIndex = 0;
+            this.turkey.Text = "   TURKEY";
+            this.turkey.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.turkey.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.turkey.UseVisualStyleBackColor = true;
+            this.turkey.Click += new System.EventHandler(this.dunya_Click);
             // 
             // topBar
             // 
@@ -421,34 +419,12 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(536, 57);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(389, 56);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // Maps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(236)))), ((int)(((byte)(240)))));
             this.ClientSize = new System.Drawing.Size(928, 510);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.rightTopCont);
             this.Controls.Add(this.containerMap);
             this.Controls.Add(this.panel1);
@@ -478,8 +454,8 @@
         #endregion
 
         private System.Windows.Forms.Panel leftSideBar;
-        private System.Windows.Forms.Button turkiye;
-        private System.Windows.Forms.Button dunya;
+        private System.Windows.Forms.Button turkeyLive;
+        private System.Windows.Forms.Button turkey;
         private System.Windows.Forms.Panel topBar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox logo;
@@ -504,9 +480,7 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button simgeDurKuc;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel tags;
-        private System.Windows.Forms.Button button2;
     }
 }
 

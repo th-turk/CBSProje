@@ -12,7 +12,6 @@ namespace CBSProjeTasarimTest
 {
     public partial class TurkeyTrends : UserControl
     {
-
         private static TurkeyTrends _instance;
         public static TurkeyTrends Instance
         {
@@ -26,7 +25,7 @@ namespace CBSProjeTasarimTest
         public TurkeyTrends()
         {
             InitializeComponent();
-            //GetTrends("Türkiye");
+            GetTrends("Türkiye");
         }
         
         public void GetTrends(string loc)
@@ -56,9 +55,6 @@ namespace CBSProjeTasarimTest
                 List<Tweet> tweetler = twitter.GetTweetsByHashtag(trendUrl, trends[i]);
                 twitter.FindUserLocation(tweetler);
             }
-                
-           
-            
         }
 
         int labelDistance = 40;

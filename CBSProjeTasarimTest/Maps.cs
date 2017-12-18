@@ -20,12 +20,17 @@ namespace CBSProjeTasarimTest
                          Path.GetDirectoryName(
                              Directory.GetCurrentDirectory()));
         public static MapInfoApplication mi;
+        Callback callb;
+        public TweetInfo f2 = new TweetInfo();
+
         public static int counter = 0;
 
         public int layerSayisi = 2;
+
         public Maps()
         {
             InitializeComponent();
+            callb = new Callback(this);
             simgeDurKuc.Visible = false;
             FormBorderStyle = FormBorderStyle.None;
             sliderHided=true;
@@ -37,9 +42,11 @@ namespace CBSProjeTasarimTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            sidePanel.Height = dunya.Height;
-            dunya.BackColor = selected;
-            sidePanel.Top = dunya.Top;
+            
+
+            sidePanel.Height = turkeyLive.Height;
+            turkeyLive.BackColor = selected;
+            sidePanel.Top = turkeyLive.Top;
             
 
             fullSize.BackgroundImage = CBSProjeTasarimTest.Properties.Resources.switch_to_full_screen_button__1_;
@@ -50,19 +57,20 @@ namespace CBSProjeTasarimTest
             mi.Do("set application window " + p.ToString());
             mi.Do("run application \"" + "d:/haritalar2.WOR" + "\"");
 
+            mi.SetCallback(callb);
 
-            if (!tags.Contains(WorldTrends.Instance))
+            mi.Do("create buttonpad \"a\" as toolbutton calling OLE \"info\" id 2001");
+
+            if (!tags.Contains(TurkeyTrends.Instance))
             {
-                tags.Controls.Add(WorldTrends.Instance);
-                WorldTrends.Instance.Dock = DockStyle.Fill;
-                WorldTrends.Instance.BringToFront();
+                tags.Controls.Add(TurkeyTrends.Instance);
+                TurkeyTrends.Instance.Dock = DockStyle.Fill;
+                TurkeyTrends.Instance.BringToFront();
             }
-            else WorldTrends.Instance.BringToFront();
-            
+            else TurkeyTrends.Instance.BringToFront();
+
         }
-
-
-
+        
         private void close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -154,32 +162,31 @@ namespace CBSProjeTasarimTest
 
         Color unselected = Color.FromArgb(113, 208, 240);
         Color selected = Color.FromArgb(189, 199, 216);
+
         private void dunya_Click(object sender, EventArgs e)
         {
-            sidePanel.Height = dunya.Height;
-            dunya.BackColor = selected;
-            turkiye.BackColor = unselected;
+            sidePanel.Height = turkey.Height;
+            turkey.BackColor = selected;
+            turkeyLive.BackColor = unselected;
             stat.BackColor = unselected;
-            sidePanel.Top = dunya.Top;
+            sidePanel.Top = turkey.Top;
 
             containerMap.Visible = true;
             sideBarReset();
-
             
-            mi.Do("Set Map  Zoom Entire Layer "+(layerSayisi ));
-            mi.Do("Set Map  Layer "+ (layerSayisi - 1) + " Editable On");
-            mi.Do("Set Map  Layer "+ (layerSayisi - 1) + " Editable On");
-
-           
-            if (!tags.Contains(WorldTrends.Instance))
-            {
-                tags.Controls.Add(WorldTrends.Instance);
-                WorldTrends.Instance.Dock = DockStyle.Fill;
-                WorldTrends.Instance.BringToFront();
-            }
-            else WorldTrends.Instance.BringToFront();
+            //mi.Do("Set Map  Zoom Entire Layer "+(layerSayisi ));
+            //mi.Do("Set Map  Layer "+ (layerSayisi - 1) + " Editable On");
+            //mi.Do("Set Map  Layer "+ (layerSayisi - 1) + " Editable On");
 
 
+            //if (!tags.Contains(WorldTrends.Instance))
+            //{
+            //    tags.Controls.Add(WorldTrends.Instance);
+            //    WorldTrends.Instance.Dock = DockStyle.Fill;
+            //    WorldTrends.Instance.BringToFront();
+            //}
+            //else WorldTrends.Instance.BringToFront();
+            
             if (layerSayisi == 3)
             {
                 DeleteTweetTable();
@@ -203,11 +210,11 @@ namespace CBSProjeTasarimTest
 
 
 
-            sidePanel.Height = turkiye.Height;
-            turkiye.BackColor = selected;
+            sidePanel.Height = turkeyLive.Height;
+            turkeyLive.BackColor = selected;
             stat.BackColor = unselected;
-            dunya.BackColor = unselected;
-            sidePanel.Top = turkiye.Top;
+            turkey.BackColor = unselected;
+            sidePanel.Top = turkeyLive.Top;
 
             containerMap.Visible = true;
             sideBarReset();
@@ -229,7 +236,7 @@ namespace CBSProjeTasarimTest
             DataAccess db = new DataAccess();
 
             List<TweetDB> twDB;
-            twDB = db.GetAllTweets();
+            twDB = db.GetTweetsInlast10Min();
 
             PutTweetsOnMap(twDB);
             
@@ -239,8 +246,8 @@ namespace CBSProjeTasarimTest
         {
             sidePanel.Height = stat.Height;
             stat.BackColor = selected;
-            turkiye.BackColor = unselected;
-            dunya.BackColor = unselected;
+            turkeyLive.BackColor = unselected;
+            turkey.BackColor = unselected;
             sidePanel.Top = stat.Top;
 
             containerMap.Visible = false;
@@ -261,8 +268,7 @@ namespace CBSProjeTasarimTest
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
-
+        
         public int sliderSize;
         public bool sliderHided;
         private void timer_Tick(object sender, EventArgs e)
@@ -318,8 +324,7 @@ namespace CBSProjeTasarimTest
         //info
         private void button7_Click(object sender, EventArgs e)
         {
-            mi.RunMenuCommand(1707);
-            //mi.Do("run menu command 1707");
+            mi.Do("run menu command id 2001");
         }
 
         //cancel all selects
@@ -448,7 +453,7 @@ namespace CBSProjeTasarimTest
             Maps.counter++;
             foreach (var tweet in tweetDB)
             {
-                Maps.mi.Do("Create point  into variable p (" + tweet.lon + "," + tweet.lat + ") Symbol MakeCustomSymbol (\"TRUC-64.BMP\",0,12,0)");
+                Maps.mi.Do("Create point  into variable p (" + tweet.lon + "," + tweet.lat + ") Symbol MakeCustomSymbol (\"twitter-red.bmp\",0,12,0)");
                 Maps.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.tweeted_user + "\",\"" + tweet.tweeted_location + "\",\"" + tweet.tweeted_date + "\")");
                 
             }
@@ -456,18 +461,6 @@ namespace CBSProjeTasarimTest
 
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //double[] loc= { 41.27694, 39.90861 };
-            //HaritayaTweetKoy(loc[0], loc[1],);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         
 
     }
