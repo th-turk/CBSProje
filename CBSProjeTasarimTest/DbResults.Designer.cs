@@ -1,6 +1,6 @@
 ﻿namespace CBSProjeTasarimTest
 {
-    partial class WorldTrends
+    partial class DbResults
     {
         /// <summary> 
         /// Required designer variable.

@@ -17,6 +17,15 @@ namespace CBSProjeTasarimTest
         {
             f1 = _f1;
         }
+
+        public TweetInfo TweetInfo
+        {
+            get => default(TweetInfo);
+            set
+            {
+            }
+        }
+
         public void info(string a)
         {
             int k = Convert.ToInt32(Maps.mi.Eval("searchpoint(frontwindow(),commandinfo(1),commandinfo(2))"));

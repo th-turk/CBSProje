@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,17 +50,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Callback.cs" />
+    <Compile Include="Statistic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Statistic.Designer.cs">
+      <DependentUpon>Statistic.cs</DependentUpon>
+    </Compile>
     <Compile Include="TweetInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TweetInfo.Designer.cs">
       <DependentUpon>TweetInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorldTrends.cs">
+    <Compile Include="DbResults.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WorldTrends.Designer.cs">
-      <DependentUpon>WorldTrends.cs</DependentUpon>
+    <Compile Include="DbResults.Designer.cs">
+      <DependentUpon>DbResults.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps.cs">
       <SubType>Form</SubType>
@@ -77,11 +84,14 @@
     </Compile>
     <Compile Include="Tweet.cs" />
     <Compile Include="Twitter.cs" />
+    <EmbeddedResource Include="Statistic.resx">
+      <DependentUpon>Statistic.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TweetInfo.resx">
       <DependentUpon>TweetInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WorldTrends.resx">
-      <DependentUpon>WorldTrends.cs</DependentUpon>
+    <EmbeddedResource Include="DbResults.resx">
+      <DependentUpon>DbResults.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Maps.resx">
       <DependentUpon>Maps.cs</DependentUpon>

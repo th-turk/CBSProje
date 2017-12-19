@@ -42,12 +42,11 @@ namespace CBSProjeTasarimTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-
             sidePanel.Height = turkeyLive.Height;
             turkeyLive.BackColor = selected;
             sidePanel.Top = turkeyLive.Top;
-            
+
+            searchPanel.Visible = false;
 
             fullSize.BackgroundImage = CBSProjeTasarimTest.Properties.Resources.switch_to_full_screen_button__1_;
 
@@ -56,6 +55,10 @@ namespace CBSProjeTasarimTest
             mi.Do("set next document parent " + p.ToString() + "style 1");
             mi.Do("set application window " + p.ToString());
             mi.Do("run application \"" + "d:/haritalar2.WOR" + "\"");
+
+            mi.Do("Set Map  Zoom Entire Layer " + (layerSayisi - 1));
+            mi.Do("Set Map  Layer " + (layerSayisi) + " Editable On");
+            mi.Do("Set Map  Layer " + (layerSayisi) + " Editable On");
 
             mi.SetCallback(callb);
 
@@ -68,6 +71,22 @@ namespace CBSProjeTasarimTest
                 TurkeyTrends.Instance.BringToFront();
             }
             else TurkeyTrends.Instance.BringToFront();
+
+            if (layerSayisi == 3)
+            {
+                DeleteTweetTable();
+                createLiveTweetsTable();
+            }
+            else
+            {
+                createLiveTweetsTable();
+            }
+            DataAccess db = new DataAccess();
+
+            List<TweetDB> twDB;
+            twDB = db.GetTweetsInlast10Min();
+
+            PutTweetsOnMap(twDB);
 
         }
         
@@ -97,6 +116,7 @@ namespace CBSProjeTasarimTest
 
         }
 
+        //exit from full screen
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Escape)
@@ -171,21 +191,14 @@ namespace CBSProjeTasarimTest
             stat.BackColor = unselected;
             sidePanel.Top = turkey.Top;
 
-            containerMap.Visible = true;
+            searchPanel.Visible = true;
+            map.Visible = true;
+            tags.Visible = true;
             sideBarReset();
             
             //mi.Do("Set Map  Zoom Entire Layer "+(layerSayisi ));
             //mi.Do("Set Map  Layer "+ (layerSayisi - 1) + " Editable On");
             //mi.Do("Set Map  Layer "+ (layerSayisi - 1) + " Editable On");
-
-
-            //if (!tags.Contains(WorldTrends.Instance))
-            //{
-            //    tags.Controls.Add(WorldTrends.Instance);
-            //    WorldTrends.Instance.Dock = DockStyle.Fill;
-            //    WorldTrends.Instance.BringToFront();
-            //}
-            //else WorldTrends.Instance.BringToFront();
             
             if (layerSayisi == 3)
             {
@@ -216,7 +229,9 @@ namespace CBSProjeTasarimTest
             turkey.BackColor = unselected;
             sidePanel.Top = turkeyLive.Top;
 
-            containerMap.Visible = true;
+            searchPanel.Visible = false;
+            map.Visible = true;
+            tags.Visible = true;
             sideBarReset();
             
             mi.Do("Set Map  Zoom Entire Layer "+(layerSayisi-1));
@@ -250,8 +265,12 @@ namespace CBSProjeTasarimTest
             turkey.BackColor = unselected;
             sidePanel.Top = stat.Top;
 
-            containerMap.Visible = false;
+            searchPanel.Visible = false;
+            map.Visible = false;
+            tags.Visible = false;
             panel2.Visible = false;
+
+            containerMap.Controls.Add( new Statistic());
             
         }
 
@@ -453,7 +472,7 @@ namespace CBSProjeTasarimTest
             Maps.counter++;
             foreach (var tweet in tweetDB)
             {
-                Maps.mi.Do("Create point  into variable p (" + tweet.lon + "," + tweet.lat + ") Symbol MakeCustomSymbol (\"twitter-red.bmp\",0,12,0)");
+                Maps.mi.Do("Create point  into variable p (" + tweet.lon + "," + tweet.lat + ") Symbol MakeCustomSymbol (\"PINB-64.BMP\",0,12,0)");
                 Maps.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.tweeted_user + "\",\"" + tweet.tweeted_location + "\",\"" + tweet.tweeted_date + "\")");
                 
             }
@@ -461,8 +480,94 @@ namespace CBSProjeTasarimTest
 
 
         }
-        
 
+        // search button to find all tweets by chiritizied
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            DeleteTweetTable();
+            createLiveTweetsTable();
+            DataAccess db = new DataAccess();
+            
+            string hashtag = hashtagSearch.Text.Trim();
+            string timePeriod=null;
+            if(searchTimePer.SelectedItem !=null)
+                timePeriod = searchTimePer.SelectedItem.ToString();
+            
+            List<TweetDB> tw = new List<TweetDB>();
+            DbResults dbR=null;
+            if (hashtag.Length == 0 && timePeriod == null)
+            {
+                MessageBox.Show("Please Select a Hashtag or Time Period");
+                hashtagSearch.Text = "";
+                searchTimePer.SelectedItem = null;
+            }
+            else if (hashtag.Length == 0 && timePeriod != null)
+            {
+                tw = db.GetTweetsByTime(timePeriod);
+                if (tw == null)
+                {
+                    MessageBox.Show("Please Select Dedicated Time Period");
+                }
+                else
+                {
+                    dbR = new DbResults(db.GetTrendTagsByTime(timePeriod));
+                    PutTweetsOnMap(tw);
+                }
+                    
+                hashtagSearch.Text = "";
+                searchTimePer.SelectedItem = null;
+            }
+            else if (hashtag.Length != 0 && timePeriod == null)
+            {
+                tw = db.GetTweetsByHastag(hashtag);
+                if (tw == null)
+                {
+                    MessageBox.Show("Please Select Another Hashtag");
+                }
+                else
+                {
+                    List<ResultsObj> rdb = new List<ResultsObj>();
+                    ResultsObj rb = new ResultsObj {sayi=1,hastag = hashtag };
+                    rdb.Add(rb);
+                    dbR = new DbResults(rdb);
+                    PutTweetsOnMap(tw);
+                }
+
+                hashtagSearch.Text = "";
+                searchTimePer.SelectedItem = null;
+            }
+            else if (hashtag.Length != 0 && timePeriod != null)
+            {
+                tw = db.GetTweetsByHastagTime(hashtag,timePeriod);
+                if (tw == null)
+                {
+                    MessageBox.Show("Please Select a Hashtag or Time Period");
+                }
+                else
+                {
+                    List<ResultsObj> rdb = new List<ResultsObj>();
+                    ResultsObj rb = new ResultsObj { sayi = 1, hastag = hashtag };
+                    rdb.Add(rb);
+                    dbR = new DbResults(rdb);
+                    PutTweetsOnMap(tw);
+                }
+
+                hashtagSearch.Text = "";
+                searchTimePer.SelectedItem = null;
+            }
+
+            if (!tags.Contains(dbR) && dbR!=null)
+            {
+                tags.Controls.Add(dbR);
+                dbR.Dock = DockStyle.Fill;
+                dbR.BringToFront();
+            }
+        }
+
+        private void hashtagSearch_MouseClick(object sender, MouseEventArgs e)
+        {
+            hashtagSearch.Text = "";
+        }
     }
     
 }

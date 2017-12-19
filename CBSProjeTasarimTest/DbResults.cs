@@ -7,46 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DatabaseSession;
 
 namespace CBSProjeTasarimTest
 {
-    public partial class WorldTrends : UserControl
+    public partial class DbResults : UserControl
     {
-        private static WorldTrends _instance;
-        public static WorldTrends Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new WorldTrends();
-                return _instance;
-            }
-        }
-        public WorldTrends()
+        
+        public DbResults(List<ResultsObj> trendler)
         {
             InitializeComponent();
-            GetTrends("Dünya");
+            GetTrends(trendler);
         }
-
-        public void GetTrends(string loc)
+        
+        public void GetTrends(List<ResultsObj> trendler)
         {
             labelDistance = 0;
-            Twitter twitter = new Twitter();
-            List<string> trendler = new List<string>();
-
             Label title = new Label();
             panel1.Controls.Add(title);
             title.AutoSize = true;
-            title.Text = loc +" Trendleri";
+            title.Text = "Hashtags";
             title.Location = new Point(30, 0);
             title.ForeColor = Color.Black;
             labelDistance += 40;
-
-            twitter.getTrends(loc, trendler);
+            
             
             for (int i = 0; i < trendler.Count; i++)
             {
-                HashTagler(trendler[i], i);
+                HashTagler(trendler[i].hastag, i);
             }
         }
 

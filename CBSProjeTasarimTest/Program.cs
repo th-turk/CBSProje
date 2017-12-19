@@ -6,8 +6,16 @@ using System.Windows.Forms;
 
 namespace CBSProjeTasarimTest
 {
-    static class Program
+    class Program
     {
+        public Maps Maps
+        {
+            get => default(Maps);
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

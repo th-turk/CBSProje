@@ -49,6 +49,8 @@
     <Compile Include="District.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultsObj.cs" />
+    <Compile Include="ResultsObj2.cs" />
     <Compile Include="TweetDB.cs" />
   </ItemGroup>
   <ItemGroup>

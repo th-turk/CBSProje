@@ -252,6 +252,7 @@ namespace CBSProjeTasarimTest
                 string tempUrlAdress = urlAdress + tweets[i].user.ToString();
                  tweets[i]= ScrapeAdress(tempUrlAdress, tweets[i]);
             }
+
             List<TweetDB> tweetDB = new List<TweetDB>();
             //Display all tweets which have location
             foreach (var tweet in tweets)
