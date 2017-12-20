@@ -54,7 +54,7 @@ namespace CBSProjeTasarimTest
             }
             catch (WebException)
             {
-                if (MessageBox.Show("Hatali Url", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                if (MessageBox.Show("Hatali Url veya İnternet  bağlantisini Kontrol Ediniz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
                 {
 
                 }

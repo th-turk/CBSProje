@@ -59,9 +59,9 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.searchPanel = new System.Windows.Forms.Panel();
+            this.hashtagSearch = new System.Windows.Forms.ComboBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.searchTimePer = new System.Windows.Forms.ComboBox();
-            this.hashtagSearch = new System.Windows.Forms.TextBox();
             this.leftSideBar.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -279,7 +279,7 @@
             this.turkeyLive.ForeColor = System.Drawing.Color.White;
             this.turkeyLive.Image = ((System.Drawing.Image)(resources.GetObject("turkeyLive.Image")));
             this.turkeyLive.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.turkeyLive.Location = new System.Drawing.Point(12, 72);
+            this.turkeyLive.Location = new System.Drawing.Point(10, 123);
             this.turkeyLive.Name = "turkeyLive";
             this.turkeyLive.Size = new System.Drawing.Size(150, 45);
             this.turkeyLive.TabIndex = 1;
@@ -287,7 +287,7 @@
             this.turkeyLive.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.turkeyLive.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.turkeyLive.UseVisualStyleBackColor = true;
-            this.turkeyLive.Click += new System.EventHandler(this.turkiye_Click);
+            this.turkeyLive.Click += new System.EventHandler(this.turkeyLive_Click);
             // 
             // turkey
             // 
@@ -297,7 +297,7 @@
             this.turkey.ForeColor = System.Drawing.Color.White;
             this.turkey.Image = ((System.Drawing.Image)(resources.GetObject("turkey.Image")));
             this.turkey.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.turkey.Location = new System.Drawing.Point(12, 123);
+            this.turkey.Location = new System.Drawing.Point(10, 70);
             this.turkey.Name = "turkey";
             this.turkey.Size = new System.Drawing.Size(150, 45);
             this.turkey.TabIndex = 0;
@@ -305,7 +305,7 @@
             this.turkey.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.turkey.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.turkey.UseVisualStyleBackColor = true;
-            this.turkey.Click += new System.EventHandler(this.dunya_Click);
+            this.turkey.Click += new System.EventHandler(this.turkey_Click);
             // 
             // topBar
             // 
@@ -313,7 +313,7 @@
             this.topBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.topBar.Location = new System.Drawing.Point(163, 0);
             this.topBar.Name = "topBar";
-            this.topBar.Size = new System.Drawing.Size(786, 20);
+            this.topBar.Size = new System.Drawing.Size(908, 20);
             this.topBar.TabIndex = 1;
             this.topBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topBar_MouseDown);
             this.topBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topBar_MouseMove);
@@ -325,7 +325,7 @@
             this.rightTopCont.Controls.Add(this.close);
             this.rightTopCont.Controls.Add(this.fullSize);
             this.rightTopCont.Controls.Add(this.simgeDurKuc);
-            this.rightTopCont.Location = new System.Drawing.Point(871, 26);
+            this.rightTopCont.Location = new System.Drawing.Point(993, 26);
             this.rightTopCont.Name = "rightTopCont";
             this.rightTopCont.Size = new System.Drawing.Size(78, 27);
             this.rightTopCont.TabIndex = 7;
@@ -396,7 +396,7 @@
             this.containerMap.Controls.Add(this.tags);
             this.containerMap.Location = new System.Drawing.Point(169, 131);
             this.containerMap.Name = "containerMap";
-            this.containerMap.Size = new System.Drawing.Size(780, 379);
+            this.containerMap.Size = new System.Drawing.Size(902, 379);
             this.containerMap.TabIndex = 6;
             // 
             // map
@@ -404,15 +404,15 @@
             this.map.Dock = System.Windows.Forms.DockStyle.Fill;
             this.map.Location = new System.Drawing.Point(0, 0);
             this.map.Name = "map";
-            this.map.Size = new System.Drawing.Size(580, 379);
+            this.map.Size = new System.Drawing.Size(596, 379);
             this.map.TabIndex = 1;
             // 
             // tags
             // 
             this.tags.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tags.Location = new System.Drawing.Point(580, 0);
+            this.tags.Location = new System.Drawing.Point(596, 0);
             this.tags.Name = "tags";
-            this.tags.Size = new System.Drawing.Size(200, 379);
+            this.tags.Size = new System.Drawing.Size(306, 379);
             this.tags.TabIndex = 0;
             // 
             // notifyIcon
@@ -427,13 +427,25 @@
             // searchPanel
             // 
             this.searchPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchPanel.Controls.Add(this.hashtagSearch);
             this.searchPanel.Controls.Add(this.searchButton);
             this.searchPanel.Controls.Add(this.searchTimePer);
-            this.searchPanel.Controls.Add(this.hashtagSearch);
-            this.searchPanel.Location = new System.Drawing.Point(319, 76);
+            this.searchPanel.Location = new System.Drawing.Point(336, 77);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(429, 40);
             this.searchPanel.TabIndex = 8;
+            // 
+            // hashtagSearch
+            // 
+            this.hashtagSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.hashtagSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.hashtagSearch.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.hashtagSearch.FormattingEnabled = true;
+            this.hashtagSearch.Location = new System.Drawing.Point(3, 9);
+            this.hashtagSearch.Name = "hashtagSearch";
+            this.hashtagSearch.Size = new System.Drawing.Size(182, 21);
+            this.hashtagSearch.TabIndex = 3;
+            this.hashtagSearch.Text = "Select Hashtag";
             // 
             // searchButton
             // 
@@ -479,22 +491,16 @@
             this.searchTimePer.Name = "searchTimePer";
             this.searchTimePer.Size = new System.Drawing.Size(121, 21);
             this.searchTimePer.TabIndex = 1;
-            // 
-            // hashtagSearch
-            // 
-            this.hashtagSearch.Location = new System.Drawing.Point(3, 10);
-            this.hashtagSearch.Name = "hashtagSearch";
-            this.hashtagSearch.Size = new System.Drawing.Size(182, 20);
-            this.hashtagSearch.TabIndex = 0;
-            this.hashtagSearch.Text = "Insert Hashtag(#)/Search...";
-            this.hashtagSearch.MouseClick += new System.Windows.Forms.MouseEventHandler(this.hashtagSearch_MouseClick);
+            this.searchTimePer.Tag = "";
+            this.searchTimePer.Text = "Select A Time Period";
             // 
             // Maps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(236)))), ((int)(((byte)(240)))));
-            this.ClientSize = new System.Drawing.Size(949, 510);
+            this.ClientSize = new System.Drawing.Size(1071, 510);
             this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.rightTopCont);
             this.Controls.Add(this.containerMap);
@@ -519,7 +525,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.containerMap.ResumeLayout(false);
             this.searchPanel.ResumeLayout(false);
-            this.searchPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -554,10 +559,10 @@
         private System.Windows.Forms.Button simgeDurKuc;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel searchPanel;
-        private System.Windows.Forms.TextBox hashtagSearch;
         private System.Windows.Forms.ComboBox searchTimePer;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Panel tags;
+        private System.Windows.Forms.ComboBox hashtagSearch;
     }
 }
 

@@ -11,12 +11,13 @@ using MapInfo;
 using System.Runtime.InteropServices;
 using System.IO;
 using DatabaseSession;
+using System.Diagnostics;
 
 namespace CBSProjeTasarimTest
 {
     public partial class Maps : Form
     {
-        string path = Path.GetDirectoryName(
+        public static string path = Path.GetDirectoryName(
                          Path.GetDirectoryName(
                              Directory.GetCurrentDirectory()));
         public static MapInfoApplication mi;
@@ -25,7 +26,9 @@ namespace CBSProjeTasarimTest
 
         public static int counter = 0;
 
-        public int layerSayisi = 2;
+        public static int layerSayisi = 2;
+        
+        DataAccess db = new DataAccess();
 
         public Maps()
         {
@@ -42,61 +45,82 @@ namespace CBSProjeTasarimTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            sidePanel.Height = turkeyLive.Height;
-            turkeyLive.BackColor = selected;
-            sidePanel.Top = turkeyLive.Top;
+            sidePanel.Height = turkey.Height;
+            turkey.BackColor = selected;
+            sidePanel.Top = turkey.Top;
 
-            searchPanel.Visible = false;
+            searchPanel.Visible = true;
 
             fullSize.BackgroundImage = CBSProjeTasarimTest.Properties.Resources.switch_to_full_screen_button__1_;
 
-            mi = new MapInfo.MapInfoApplication();
-            int p = map.Handle.ToInt32();
-            mi.Do("set next document parent " + p.ToString() + "style 1");
-            mi.Do("set application window " + p.ToString());
-            mi.Do("run application \"" + "d:/haritalar2.WOR" + "\"");
-
-            mi.Do("Set Map  Zoom Entire Layer " + (layerSayisi - 1));
-            mi.Do("Set Map  Layer " + (layerSayisi) + " Editable On");
-            mi.Do("Set Map  Layer " + (layerSayisi) + " Editable On");
-
-            mi.SetCallback(callb);
-
-            mi.Do("create buttonpad \"a\" as toolbutton calling OLE \"info\" id 2001");
-
-            if (!tags.Contains(TurkeyTrends.Instance))
+            //to load all Depended tables
+            try
             {
-                tags.Controls.Add(TurkeyTrends.Instance);
-                TurkeyTrends.Instance.Dock = DockStyle.Fill;
-                TurkeyTrends.Instance.BringToFront();
-            }
-            else TurkeyTrends.Instance.BringToFront();
+                mi = new MapInfo.MapInfoApplication();
+                int p = map.Handle.ToInt32();
+                mi.Do("set next document parent " + p.ToString() + "style 1");
+                mi.Do("set application window " + p.ToString());
+                mi.Do("run application \"" + path + "\\Resources\\Databases\\haritalar2.WOR" + "\"");
 
-            if (layerSayisi == 3)
+                mi.Do("Set Map  Zoom Entire Layer " + (layerSayisi - 1));
+                mi.Do("Set Map  Layer " + (layerSayisi) + " Editable On");
+                mi.Do("Set Map  Layer " + (layerSayisi) + " Editable On");
+
+
+                mi.SetCallback(callb);
+
+                mi.Do("create buttonpad \"a\" as toolbutton calling OLE \"info\" id 2001");
+
+
+                tableProsses();
+                //Display all Hashtags
+                getAllHashtags();
+                
+            }
+            catch (Exception)
             {
-                DeleteTweetTable();
-                createLiveTweetsTable();
+                string message = "Are You Sure to Close App?";
+                string caption = "Application Shut Down";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    CloseMapInfo();
+                    Form.ActiveForm.Close();
+                }
+                else
+                {
+                    Form1_Load(sender, e);
+                }
             }
-            else
-            {
-                createLiveTweetsTable();
-            }
-            DataAccess db = new DataAccess();
-
-            List<TweetDB> twDB;
-            twDB = db.GetTweetsInlast10Min();
-
-            PutTweetsOnMap(twDB);
-
+            
         }
+
         
         private void close_Click(object sender, EventArgs e)
         {
+
+            CloseMapInfo();
             this.Close();
             Application.Exit();
+
         }
 
-       
+       //Close all MapInfo exe after App Close
+        public void CloseMapInfo()
+        {
+            Process[] processes = Process.GetProcesses();
+            foreach (Process p in processes)
+            {
+                if (p.ProcessName.StartsWith("MapInfo"))
+                {
+                    p.Kill();
+                }
+            }
+        }
+
         private void fullSize_Click(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
@@ -183,7 +207,21 @@ namespace CBSProjeTasarimTest
         Color unselected = Color.FromArgb(113, 208, 240);
         Color selected = Color.FromArgb(189, 199, 216);
 
-        private void dunya_Click(object sender, EventArgs e)
+        // Delete Table and  Create again
+        public void tableProsses()
+        {
+            if (layerSayisi == 3)
+            {
+                DeleteTweetTable();
+                createLiveTweetsTable();
+            }
+            else
+            {
+                createLiveTweetsTable();
+            }
+        }
+
+        private void turkey_Click(object sender, EventArgs e)
         {
             sidePanel.Height = turkey.Height;
             turkey.BackColor = selected;
@@ -195,68 +233,82 @@ namespace CBSProjeTasarimTest
             map.Visible = true;
             tags.Visible = true;
             sideBarReset();
-            
-            //mi.Do("Set Map  Zoom Entire Layer "+(layerSayisi ));
-            //mi.Do("Set Map  Layer "+ (layerSayisi - 1) + " Editable On");
-            //mi.Do("Set Map  Layer "+ (layerSayisi - 1) + " Editable On");
-            
-            if (layerSayisi == 3)
-            {
-                DeleteTweetTable();
-                createLiveTweetsTable();
-            }
-            else
-            {
-                createLiveTweetsTable();
-            }
+
+            getAllHashtags();
+            tableProsses();
         }
 
-        private void turkiye_Click(object sender, EventArgs e)
+        // Return All Hashtags in database
+        public void getAllHashtags()
         {
-            if (!tags.Contains(TurkeyTrends.Instance))
+            TurkeyTrends turkeyTrends = new TurkeyTrends();
+            if (!tags.Contains(turkeyTrends))
             {
-                tags.Controls.Add(TurkeyTrends.Instance);
-                TurkeyTrends.Instance.Dock = DockStyle.Fill;
-                TurkeyTrends.Instance.BringToFront();
-            }
-            else TurkeyTrends.Instance.BringToFront();
-
-
-
-            sidePanel.Height = turkeyLive.Height;
-            turkeyLive.BackColor = selected;
-            stat.BackColor = unselected;
-            turkey.BackColor = unselected;
-            sidePanel.Top = turkeyLive.Top;
-
-            searchPanel.Visible = false;
-            map.Visible = true;
-            tags.Visible = true;
-            sideBarReset();
-            
-            mi.Do("Set Map  Zoom Entire Layer "+(layerSayisi-1));
-            mi.Do("Set Map  Layer "+ (layerSayisi ) + " Editable On");
-            mi.Do("Set Map  Layer "+ (layerSayisi ) + " Editable On");
-
-
-            if (layerSayisi == 3)
-            {
-                DeleteTweetTable();
-                createLiveTweetsTable();
+                tags.Controls.Add(turkeyTrends);
+                turkeyTrends.Dock = DockStyle.Fill;
+                turkeyTrends.BringToFront();
             }
             else
             {
-                createLiveTweetsTable();
+                tags.Controls.Remove(turkeyTrends);
+                tags.Controls.Add(turkeyTrends);
+                turkeyTrends.Dock = DockStyle.Fill;
+                turkeyTrends.BringToFront();
             }
-            DataAccess db = new DataAccess();
-
-            List<TweetDB> twDB;
-            twDB = db.GetTweetsInlast10Min();
-
-            PutTweetsOnMap(twDB);
             
+            List<ResultsObj> twDB;
+            twDB = db.GetAllHashtags();
+            hashtagSearch.DataSource = twDB;
+            hashtagSearch.Text = "Select A Hashtag";
+            turkeyTrends.GetTrends(twDB);
         }
+       
+        private void turkeyLive_Click(object sender, EventArgs e)
+        {
+            string message = "This Event Will Take Around 10 Minute \n Are You Sure to Continue?";
+            string caption = "Turkey Live";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
 
+            if (result == DialogResult.Yes)
+            {
+                sidePanel.Height = turkeyLive.Height;
+                turkeyLive.BackColor = selected;
+                stat.BackColor = unselected;
+                turkey.BackColor = unselected;
+                sidePanel.Top = turkeyLive.Top;
+
+                searchPanel.Visible = false;
+                map.Visible = true;
+                tags.Visible = true;
+                sideBarReset();
+
+                // set Map settings
+                mi.Do("Set Map  Zoom Entire Layer " + (layerSayisi - 1));
+                mi.Do("Set Map  Layer " + (layerSayisi) + " Editable On");
+                mi.Do("Set Map  Layer " + (layerSayisi) + " Editable On");
+
+                TurkeyTrends turkeyTrends = new TurkeyTrends();
+                turkeyTrends.GetTrends("Türkiye");
+                if (!tags.Contains(turkeyTrends))
+                {
+                    tags.Controls.Add(turkeyTrends);
+                    turkeyTrends.Dock = DockStyle.Fill;
+                    turkeyTrends.BringToFront();
+                }
+                else turkeyTrends.BringToFront();
+
+                tableProsses();
+
+                List<TweetDB> twDB;
+                twDB = db.GetTweetsInlast10Min();
+
+                PutTweetsOnMap(twDB);
+            }
+                     
+        }
+      
         private void stat_Click(object sender, EventArgs e)
         {
             sidePanel.Height = stat.Height;
@@ -273,8 +325,7 @@ namespace CBSProjeTasarimTest
             containerMap.Controls.Add( new Statistic());
             
         }
-
-
+        
         private void sideBarReset()
         {
             panel2.Visible = true;
@@ -395,7 +446,7 @@ namespace CBSProjeTasarimTest
         }
         
         //canlı tweet gösterme tablosu 
-        private void createLiveTweetsTable()
+        public static void createLiveTweetsTable()
         {
             if (layerSayisi == 2) layerSayisi++;
             try
@@ -437,12 +488,11 @@ namespace CBSProjeTasarimTest
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
-                this.Close();
             }
         }
 
         //canlı tweet tablosu silme
-        private void DeleteTweetTable()
+        public static void DeleteTweetTable()
         {
             if (layerSayisi == 3)
             {
@@ -462,7 +512,7 @@ namespace CBSProjeTasarimTest
         }
 
         // get all tweets adn  display them on a map
-        public void PutTweetsOnMap(List<TweetDB> tweetDB)
+        public static void PutTweetsOnMap(List<TweetDB> tweetDB)
         {
             createLiveTweetsTable();
             if (counter == 0)
@@ -472,13 +522,12 @@ namespace CBSProjeTasarimTest
             Maps.counter++;
             foreach (var tweet in tweetDB)
             {
-                Maps.mi.Do("Create point  into variable p (" + tweet.lon + "," + tweet.lat + ") Symbol MakeCustomSymbol (\"PINB-64.BMP\",0,12,0)");
+                Maps.mi.Do("Create point  into variable p (" + tweet.lon + "," + tweet.lat + ") Symbol MakeCustomSymbol (\"PING-64.BMP\",0,12,0)");
                 Maps.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.tweeted_user + "\",\"" + tweet.tweeted_location + "\",\"" + tweet.tweeted_date + "\")");
                 
             }
             Maps.mi.Do("Commit Table CANLI_TWEET");
-
-
+            
         }
 
         // search button to find all tweets by chiritizied
@@ -486,25 +535,34 @@ namespace CBSProjeTasarimTest
         {
             DeleteTweetTable();
             createLiveTweetsTable();
-            DataAccess db = new DataAccess();
-            
-            string hashtag = hashtagSearch.Text.Trim();
+
+            string hashtag = null;
             string timePeriod=null;
-            if(searchTimePer.SelectedItem !=null)
+            int sayi=0;
+            if (hashtagSearch.SelectedItem != null && hashtagSearch.SelectedIndex != 0)
+            {
+                hashtag = hashtagSearch.SelectedItem.ToString();
+                int index = hashtag.IndexOf('(');
+                int index2 = hashtag.IndexOf(')');
+
+                MessageBox.Show(hashtag.Substring(index + 1, (index2 - index - 1)));
+                sayi = Convert.ToInt32(hashtag.Substring(index + 1, (index2 - index - 1)));
+                hashtag = hashtag.Substring(0, index).Trim();
+            }
+            if (searchTimePer.SelectedItem != null && searchTimePer.SelectedIndex != 0)
                 timePeriod = searchTimePer.SelectedItem.ToString();
             
             List<TweetDB> tw = new List<TweetDB>();
             DbResults dbR=null;
-            if (hashtag.Length == 0 && timePeriod == null)
+            if (hashtag == null && timePeriod == null)
             {
                 MessageBox.Show("Please Select a Hashtag or Time Period");
-                hashtagSearch.Text = "";
-                searchTimePer.SelectedItem = null;
+                ClearContent();
             }
-            else if (hashtag.Length == 0 && timePeriod != null)
+            else if (hashtag == null && timePeriod != null)
             {
                 tw = db.GetTweetsByTime(timePeriod);
-                if (tw == null)
+                if (tw.ToArray().Length==0)
                 {
                     MessageBox.Show("Please Select Dedicated Time Period");
                 }
@@ -513,61 +571,62 @@ namespace CBSProjeTasarimTest
                     dbR = new DbResults(db.GetTrendTagsByTime(timePeriod));
                     PutTweetsOnMap(tw);
                 }
-                    
-                hashtagSearch.Text = "";
-                searchTimePer.SelectedItem = null;
+
+                ClearContent();
             }
-            else if (hashtag.Length != 0 && timePeriod == null)
+            else if (hashtag != null && timePeriod == null)
             {
                 tw = db.GetTweetsByHastag(hashtag);
-                if (tw == null)
+                if (tw.ToArray().Length == 0)
                 {
                     MessageBox.Show("Please Select Another Hashtag");
                 }
                 else
                 {
                     List<ResultsObj> rdb = new List<ResultsObj>();
-                    ResultsObj rb = new ResultsObj {sayi=1,hastag = hashtag };
+                    ResultsObj rb = new ResultsObj {sayi = sayi, hastag = hashtag };
                     rdb.Add(rb);
                     dbR = new DbResults(rdb);
                     PutTweetsOnMap(tw);
                 }
 
-                hashtagSearch.Text = "";
-                searchTimePer.SelectedItem = null;
+                ClearContent();
             }
-            else if (hashtag.Length != 0 && timePeriod != null)
+            else if (hashtag != null && timePeriod != null)
             {
                 tw = db.GetTweetsByHastagTime(hashtag,timePeriod);
-                if (tw == null)
+                if (tw.ToArray().Length==0)
                 {
                     MessageBox.Show("Please Select a Hashtag or Time Period");
                 }
                 else
                 {
                     List<ResultsObj> rdb = new List<ResultsObj>();
-                    ResultsObj rb = new ResultsObj { sayi = 1, hastag = hashtag };
+                    ResultsObj rb = new ResultsObj { sayi = sayi, hastag = hashtag };
                     rdb.Add(rb);
                     dbR = new DbResults(rdb);
                     PutTweetsOnMap(tw);
                 }
 
-                hashtagSearch.Text = "";
-                searchTimePer.SelectedItem = null;
+                ClearContent();
             }
 
-            if (!tags.Contains(dbR) && dbR!=null)
+            if (!tags.Contains(dbR) && dbR != null)
             {
                 tags.Controls.Add(dbR);
                 dbR.Dock = DockStyle.Fill;
                 dbR.BringToFront();
             }
         }
-
-        private void hashtagSearch_MouseClick(object sender, MouseEventArgs e)
+        
+        public void ClearContent()
         {
-            hashtagSearch.Text = "";
+            hashtagSearch.SelectedItem = null;
+            searchTimePer.SelectedItem = null;
+            hashtagSearch.Text = "Select A Hashtag";
+            searchTimePer.Text = "Select A Time Period";
         }
+       
     }
     
 }

@@ -34,32 +34,51 @@ namespace CBSProjeTasarimTest
             
             for (int i = 0; i < trendler.Count; i++)
             {
-                HashTagler(trendler[i].hastag, i);
+                Label tag = new Label();
+                panel1.Controls.Add(tag);
+                tag.Top = labelDistance;
+                tag.Left = 15;
+                tag.AutoSize = true;
+                tag.Text = trendler[i].ToString();
+                tag.Font = new Font(FontFamily.GenericSansSerif, 11, FontStyle.Bold);
+                tag.ForeColor = Color.Red;
+                tag.Visible = true;
+                labelDistance += 30;
+
+                tag.Click += new EventHandler(tag_Click);
             }
         }
 
         int labelDistance = 0;
 
-        //Hashtagler için Label oluşturma
-        public Label HashTagler(string tagname, int i)
+        protected void tag_Click(object sender, EventArgs e)
         {
-            Random randonGen = new Random();
-            Color[] randomColor = {Color.Red,Color.Pink,Color.Orange,
-                                    Color.Turquoise,Color.Yellow,Color.Green,
-                                        Color.Blue,Color.Gray,Color.DarkBlue,Color.Brown};
+            Label temp = sender as Label;
+            string hashtag = temp.Text;
+            int index = hashtag.IndexOf('(');
+            int index2 = hashtag.IndexOf(')');
             
-            Label tag = new Label();
-            panel1.Controls.Add(tag);
-            tag.Top = labelDistance;
-            tag.Left = 15;
-            tag.AutoSize = true;
-            tag.Name = randomColor[i].Name;
-            tag.Text = tagname;
-            tag.Font = new Font(FontFamily.GenericSansSerif, 11, FontStyle.Bold);
-            tag.ForeColor = randomColor[i];
-            tag.Visible = true;
-            labelDistance += 30;
-            return tag;
+            int sayi =Convert.ToInt32(hashtag.Substring(index+1, (index2 - index-1)));
+            hashtag = hashtag.Substring(0, index).Trim();
+            DataAccess db = new DataAccess();
+            List<TweetDB> tw = new List<TweetDB>();
+            DbResults dbR = null;
+            tw = db.GetTweetsByHastag(hashtag);
+            if (tw.ToArray().Length == 0)
+            {
+                MessageBox.Show("Please Select Another Hashtag");
+            }
+            else
+            {
+                Maps.DeleteTweetTable();
+                Maps.createLiveTweetsTable();
+                List<ResultsObj> rdb = new List<ResultsObj>();
+                ResultsObj rb = new ResultsObj { sayi = sayi, hastag = hashtag };
+                rdb.Add(rb);
+                dbR = new DbResults(rdb);
+                Maps.PutTweetsOnMap(tw);
+            }
+
         }
     }
 }

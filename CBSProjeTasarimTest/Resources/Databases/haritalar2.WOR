@@ -1,0 +1,33 @@
+!Workspace
+!Version  950
+!Charset WindowsLatin1
+Open Table "4.sinif\CBS\CBS-Folders\MiDataTr\Bolum_3\Dunya" As Dunya Interactive
+Open Table "4.sinif\CBS\CBS-Folders\MiDataTr\Bolum_3\Iller" As Iller Interactive
+Map From Iller,Dunya 
+  Position (0.0520833,0.0520833) Units "in"
+  Width 8.75 Units "in" Height 5.97917 Units "in" 
+Set Window FrontWindow() ScrollBars Off Autoscroll On Enhanced On Smooth Text Antialias Image High
+Set Map
+  CoordSys Earth Projection 1, 104
+  Center (-1.3966675,-3.1863215)
+  Zoom 28156.3136 Units "mi"
+  Preserve Zoom Display Zoom
+  Distance Units "mi" Area Units "sq mi" XY Units "degree"
+Set Map
+  Layer 1
+    Display Global
+    Global Pen (1,2,0) Brush (2,10134699,16777215) Symbol (35,0,12) Line (1,2,0) Font ("Arial",0,9,0)
+    Label Line None Position Center Font ("Arial",0,9,0) Pen (1,2,0) 
+      With IL_ADI
+      Parallel On Auto Off Overlap Off Duplicates On Offset 2
+      Visibility On
+  Layer 2
+    Display Global
+    Global Pen (1,2,0) Brush (2,10134699,16777215) Symbol (35,0,12) Line (1,2,0) Font ("Arial",0,9,0)
+    Label Line None Position Center Font ("Arial",0,9,0) Pen (1,2,0) 
+      With Country
+      Parallel On Auto Off Overlap Off Duplicates On Offset 2
+      Visibility On
+Set Window FrontWindow() Printer
+ Name "MapInfo PDF Printer Version 11.5" Orientation Portrait Copies 1
+ Papersize 1

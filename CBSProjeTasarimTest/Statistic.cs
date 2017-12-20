@@ -17,16 +17,33 @@ namespace CBSProjeTasarimTest
         public Statistic()
         {
             InitializeComponent();
+            AllHashtags();
+            hashtagStat.Text = "Select A Hashtag";
             foreach (var series in this.chart1.Series)
             {
                 series.Points.Clear();
             }
-            hashtagStat.Text = "";
+            foreach (var series in this.chart2.Series)
+            {
+                series.Points.Clear();
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void AllHashtags()
         {
-            string hashtag = hashtagStat.Text.Trim();
+            hashtagStat.Items.Clear();
+            List<ResultsObj> twDB;
+            twDB = db.GetAllHashtags();
+            hashtagStat.DataSource = twDB;
+        }
+        private void analyzeWithHashtag_Click(object sender, EventArgs e)
+        {
+
+            string hashtag = hashtagStat.SelectedItem.ToString();
+            int index = hashtag.IndexOf('(');
+            hashtag = hashtag.Substring(0,index).Trim();
+            
+            Console.WriteLine(hashtag);
             List<ResultsObj2> ro = db.GetChart1Value(hashtag);
             foreach (var series in this.chart1.Series)
             {
@@ -40,31 +57,31 @@ namespace CBSProjeTasarimTest
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void analyzeWithTime_Click(object sender, EventArgs e)
         {
             string timePeriod = null;
             if (comboBox1.SelectedItem != null)
+            {
+
                 timePeriod = comboBox1.SelectedItem.ToString();
-            List<ResultsObj> ro=null;
-            if (timePeriod != null)
-                ro = db.GetTrendTagsByTime(timePeriod);
-            foreach (var series in this.chart2.Series)
-            {
-                series.Points.Clear();
-            }
+                List<ResultsObj> ro = null;
+                if (timePeriod != null)
+                    ro = db.GetTrendTagsByTime(timePeriod);
+                foreach (var series in this.chart2.Series)
+                {
+                    series.Points.Clear();
+                }
 
-            foreach (var result in ro)
-            {
-                chart2.ChartAreas[0].AxisX.Interval = 1;
-                this.chart2.Series["hashtag"].BorderWidth = 20;
-                this.chart2.Series["hashtag"].Points.AddXY(result.hastag, result.sayi);
+                foreach (var result in ro)
+                {
+                    chart2.ChartAreas[0].AxisX.Interval = 1;
+                    this.chart2.Series["hashtag"].BorderWidth = 20;
+                    this.chart2.Series["hashtag"].Points.AddXY(result.hastag, result.sayi);
+                }
             }
+           
         }
 
-
-        private void hashtagStat_MouseClick(object sender, MouseEventArgs e)
-        {
-            hashtagStat.Text = "";
-        }
+        
     }
 }

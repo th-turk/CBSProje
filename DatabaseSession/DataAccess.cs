@@ -43,10 +43,10 @@ namespace DatabaseSession
                 foreach (var tweet in tweetDB)
                 {
                     conn.Query($"INSERT INTO TWEET VALUES ('"+tweet.id+"'," +
-                        "'"+tweet.hastag.Replace("\"", "&#39;").Replace("'", "&#39;") + "'," +
-                        "'"+tweet.tweeted_user.Replace("\"", "&#39;").Replace("'", "&#39;") + "'," +
-                        "'"+tweet.tweeted_location.Replace("\"", "&#39;").Replace("'", "&#39;") + "'," +
-                        "Convert(datetime,'"+tweet.tweeted_date.Replace("\"", "&#39;").Replace("'", "&#39;") + "',103)," +
+                        "'"+tweet.hastag.Replace("\"", " ").Replace("'", " ") + "'," +
+                        "'"+tweet.tweeted_user.Replace("\"", " ").Replace("'", " ") + "'," +
+                        "'"+tweet.tweeted_location.Replace("\"", " ").Replace("'", " ") + "'," +
+                        "Convert(datetime,'"+tweet.tweeted_date.Replace("\"", " ").Replace("'", " ") + "',103)," +
                         "'"+tweet.lat+"','"+tweet.lon+"')");
                 }
             }
@@ -58,6 +58,15 @@ namespace DatabaseSession
             using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("DB")))
             {
                 return conn.Query<TweetDB>($"select top(500) * from tweet ").ToList();
+            }
+        }
+
+        //Get All Hashtags
+        public List<ResultsObj> GetAllHashtags()
+        {
+            using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("DB")))
+            {
+                return conn.Query<ResultsObj>($"select COUNT(*) as sayi, tw.hastag from tweet tw group by hastag order by sayi desc;").ToList();
             }
         }
 
@@ -107,7 +116,6 @@ namespace DatabaseSession
                 return conn.Query<TweetDB>($"select * from tweet where hastag ='"+ hashtag + "'; ").ToList();
             }
         }
-
         //Get Tweets By given time
         public List<TweetDB> GetTweetsByTime(string time)
         {
@@ -136,15 +144,15 @@ namespace DatabaseSession
             {
                 string[] parser = time.Split(' ');
                 if (parser[2] == "min")
-                    return conn.Query<ResultsObj>($"SELECT top 10 COUNT(*) AS sayi, tw.hastag from tweet tw where tweeted_date > DateADD(mi, -" + parser[1] + ", GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC; ").ToList();
+                    return conn.Query<ResultsObj>($"SELECT  COUNT(*) AS sayi, tw.hastag from tweet tw where tweeted_date > DateADD(mi, -" + parser[1] + ", GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC; ").ToList();
                 else if (parser[2] == "hour")
-                    return conn.Query<ResultsObj>($"SELECT top 10 COUNT(*) AS sayi, tw.hastag from tweet tw  where tweeted_date > DateADD(hour, -" + parser[1] + ", GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC; ").ToList();
+                    return conn.Query<ResultsObj>($"SELECT  COUNT(*) AS sayi, tw.hastag from tweet tw  where tweeted_date > DateADD(hour, -" + parser[1] + ", GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC; ").ToList();
                 else if (parser[2] == "day")
-                    return conn.Query<ResultsObj>($"SELECT top 10 COUNT(*) AS sayi, tw.hastag from tweet tw  where tweeted_date > DateADD(day, -" + parser[1] + ", GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC; ").ToList();
+                    return conn.Query<ResultsObj>($"SELECT  COUNT(*) AS sayi, tw.hastag from tweet tw  where tweeted_date > DateADD(day, -" + parser[1] + ", GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC; ").ToList();
                 else if (parser[2] == "week")
-                    return conn.Query<ResultsObj>($"SELECT top 10 COUNT(*) AS sayi, tw.hastag from tweet tw  where tweeted_date > DateADD(week, -" + parser[1] + ", GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC; ").ToList();
+                    return conn.Query<ResultsObj>($"SELECT  COUNT(*) AS sayi, tw.hastag from tweet tw  where tweeted_date > DateADD(week, -" + parser[1] + ", GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC; ").ToList();
                 else if (parser[2] == "month")
-                    return conn.Query<ResultsObj>($"SELECT top 10 COUNT(*) AS sayi, tw.hastag from tweet tw  where tweeted_date > DateADD(month, -" + parser[1] + ", GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC; ").ToList();
+                    return conn.Query<ResultsObj>($"SELECT  COUNT(*) AS sayi, tw.hastag from tweet tw  where tweeted_date > DateADD(month, -" + parser[1] + ", GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC; ").ToList();
                 else
                     return null;
             }
@@ -159,5 +167,7 @@ namespace DatabaseSession
                 return conn.Query<ResultsObj2>($"select Top 8 COUNT(*) AS sayi, tw.tweeted_location FROM tweet tw where hastag ='" + hashtag + "' GROUP by tw.tweeted_location ORDER BY  sayi DESC; ").ToList();
             }
         }
+
+
     }
 }

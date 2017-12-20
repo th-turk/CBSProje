@@ -12,6 +12,7 @@ namespace CBSProjeTasarimTest
 {
     public partial class TweetInfo : Form
     {
+       
         public TweetInfo()
         {
             InitializeComponent();
@@ -25,11 +26,11 @@ namespace CBSProjeTasarimTest
             label10.Text = Maps.mi.Eval("CANLI_TWEET.konum");
             label11.Text = Maps.mi.Eval("CANLI_TWEET.tarih");
 
+           
             WindowState = FormWindowState.Normal;
             TopMost = false;
             this.ShowDialog();
             this.BringToFront();
-            
         }
 
     }

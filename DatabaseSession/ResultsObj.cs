@@ -10,5 +10,10 @@ namespace DatabaseSession
     {
         public int sayi { get; set; }
         public string hastag { get; set; }
+
+        public override string ToString()
+        {
+            return hastag+" ("+sayi+")";
+        }
     }
 }

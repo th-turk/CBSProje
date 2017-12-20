@@ -2,7 +2,6 @@ C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\bin\Debug\Databa
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\bin\Debug\DatabaseSession.pdb
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\bin\Debug\Dapper.dll
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\bin\Debug\Dapper.xml
-C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\obj\Debug\DatabaseSession.csprojResolveAssemblyReference.cache
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\obj\Debug\DatabaseSession.csproj.CoreCompileInputs.cache
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\obj\Debug\DatabaseSession.dll
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\obj\Debug\DatabaseSession.pdb

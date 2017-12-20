@@ -33,6 +33,7 @@
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(236)))), ((int)(((byte)(240)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("Rockwell", 12.75F, System.Drawing.FontStyle.Bold);
@@ -41,12 +42,12 @@
             this.panel1.Size = new System.Drawing.Size(203, 379);
             this.panel1.TabIndex = 0;
             // 
-            // DunyaTrends
+            // DbResults
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Name = "DunyaTrends";
+            this.Name = "DbResults";
             this.Size = new System.Drawing.Size(203, 379);
             this.ResumeLayout(false);
 
