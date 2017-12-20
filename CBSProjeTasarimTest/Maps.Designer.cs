@@ -84,7 +84,7 @@
             this.leftSideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftSideBar.Location = new System.Drawing.Point(0, 0);
             this.leftSideBar.Name = "leftSideBar";
-            this.leftSideBar.Size = new System.Drawing.Size(163, 510);
+            this.leftSideBar.Size = new System.Drawing.Size(163, 772);
             this.leftSideBar.TabIndex = 0;
             // 
             // panel2
@@ -93,7 +93,7 @@
             this.panel2.Controls.Add(this.sliderButton);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 225);
+            this.panel2.Location = new System.Drawing.Point(0, 487);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(163, 285);
             this.panel2.TabIndex = 6;
@@ -313,7 +313,7 @@
             this.topBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.topBar.Location = new System.Drawing.Point(163, 0);
             this.topBar.Name = "topBar";
-            this.topBar.Size = new System.Drawing.Size(908, 20);
+            this.topBar.Size = new System.Drawing.Size(1201, 20);
             this.topBar.TabIndex = 1;
             this.topBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topBar_MouseDown);
             this.topBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topBar_MouseMove);
@@ -325,9 +325,9 @@
             this.rightTopCont.Controls.Add(this.close);
             this.rightTopCont.Controls.Add(this.fullSize);
             this.rightTopCont.Controls.Add(this.simgeDurKuc);
-            this.rightTopCont.Location = new System.Drawing.Point(993, 26);
+            this.rightTopCont.Location = new System.Drawing.Point(1248, 20);
             this.rightTopCont.Name = "rightTopCont";
-            this.rightTopCont.Size = new System.Drawing.Size(78, 27);
+            this.rightTopCont.Size = new System.Drawing.Size(116, 40);
             this.rightTopCont.TabIndex = 7;
             // 
             // close
@@ -336,9 +336,9 @@
             this.close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.close.FlatAppearance.BorderSize = 0;
             this.close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.close.Location = new System.Drawing.Point(53, 3);
+            this.close.Location = new System.Drawing.Point(72, 3);
             this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(18, 18);
+            this.close.Size = new System.Drawing.Size(32, 34);
             this.close.TabIndex = 4;
             this.close.UseVisualStyleBackColor = true;
             this.close.Click += new System.EventHandler(this.close_Click);
@@ -349,11 +349,12 @@
             this.fullSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fullSize.FlatAppearance.BorderSize = 0;
             this.fullSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fullSize.Location = new System.Drawing.Point(28, 3);
+            this.fullSize.Location = new System.Drawing.Point(28, 18);
             this.fullSize.Name = "fullSize";
             this.fullSize.Size = new System.Drawing.Size(19, 19);
             this.fullSize.TabIndex = 5;
             this.fullSize.UseVisualStyleBackColor = true;
+            this.fullSize.Visible = false;
             this.fullSize.Click += new System.EventHandler(this.fullSize_Click);
             // 
             // simgeDurKuc
@@ -361,7 +362,7 @@
             this.simgeDurKuc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.simgeDurKuc.FlatAppearance.BorderSize = 0;
             this.simgeDurKuc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.simgeDurKuc.Location = new System.Drawing.Point(4, 4);
+            this.simgeDurKuc.Location = new System.Drawing.Point(4, 19);
             this.simgeDurKuc.Name = "simgeDurKuc";
             this.simgeDurKuc.Size = new System.Drawing.Size(18, 18);
             this.simgeDurKuc.TabIndex = 3;
@@ -396,7 +397,7 @@
             this.containerMap.Controls.Add(this.tags);
             this.containerMap.Location = new System.Drawing.Point(169, 131);
             this.containerMap.Name = "containerMap";
-            this.containerMap.Size = new System.Drawing.Size(902, 379);
+            this.containerMap.Size = new System.Drawing.Size(1195, 641);
             this.containerMap.TabIndex = 6;
             // 
             // map
@@ -404,15 +405,15 @@
             this.map.Dock = System.Windows.Forms.DockStyle.Fill;
             this.map.Location = new System.Drawing.Point(0, 0);
             this.map.Name = "map";
-            this.map.Size = new System.Drawing.Size(596, 379);
+            this.map.Size = new System.Drawing.Size(889, 641);
             this.map.TabIndex = 1;
             // 
             // tags
             // 
             this.tags.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tags.Location = new System.Drawing.Point(596, 0);
+            this.tags.Location = new System.Drawing.Point(889, 0);
             this.tags.Name = "tags";
-            this.tags.Size = new System.Drawing.Size(306, 379);
+            this.tags.Size = new System.Drawing.Size(306, 641);
             this.tags.TabIndex = 0;
             // 
             // notifyIcon
@@ -430,7 +431,7 @@
             this.searchPanel.Controls.Add(this.hashtagSearch);
             this.searchPanel.Controls.Add(this.searchButton);
             this.searchPanel.Controls.Add(this.searchTimePer);
-            this.searchPanel.Location = new System.Drawing.Point(336, 77);
+            this.searchPanel.Location = new System.Drawing.Point(629, 77);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(429, 40);
             this.searchPanel.TabIndex = 8;
@@ -500,7 +501,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(236)))), ((int)(((byte)(240)))));
-            this.ClientSize = new System.Drawing.Size(1071, 510);
+            this.ClientSize = new System.Drawing.Size(1364, 772);
             this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.rightTopCont);
             this.Controls.Add(this.containerMap);

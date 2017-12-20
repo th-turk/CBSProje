@@ -61,7 +61,7 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(3, 3);
+            this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
             series1.BorderWidth = 50;
@@ -70,7 +70,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Number";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(321, 333);
+            this.chart1.Size = new System.Drawing.Size(550, 550);
             this.chart1.TabIndex = 0;
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title1.Name = "Title1";
@@ -79,7 +79,6 @@
             // 
             // chart2
             // 
-            this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chart2.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea2.Area3DStyle.Inclination = 10;
             chartArea2.Area3DStyle.PointDepth = 80;
@@ -89,7 +88,7 @@
             this.chart2.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(400, 3);
+            this.chart2.Location = new System.Drawing.Point(556, 0);
             this.chart2.Name = "chart2";
             this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
             series2.ChartArea = "ChartArea1";
@@ -97,7 +96,7 @@
             series2.Legend = "Legend1";
             series2.Name = "hashtag";
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(377, 333);
+            this.chart2.Size = new System.Drawing.Size(670, 550);
             this.chart2.TabIndex = 1;
             this.chart2.Text = "chart2";
             title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -111,9 +110,9 @@
             this.analyzeWithHashtag.Cursor = System.Windows.Forms.Cursors.Hand;
             this.analyzeWithHashtag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.analyzeWithHashtag.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.analyzeWithHashtag.Location = new System.Drawing.Point(233, 342);
+            this.analyzeWithHashtag.Location = new System.Drawing.Point(354, 571);
             this.analyzeWithHashtag.Name = "analyzeWithHashtag";
-            this.analyzeWithHashtag.Size = new System.Drawing.Size(91, 25);
+            this.analyzeWithHashtag.Size = new System.Drawing.Size(122, 37);
             this.analyzeWithHashtag.TabIndex = 3;
             this.analyzeWithHashtag.Text = "Analyze";
             this.analyzeWithHashtag.UseVisualStyleBackColor = false;
@@ -121,6 +120,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBox1.ForeColor = System.Drawing.SystemColors.Highlight;
             this.comboBox1.FormattingEnabled = true;
@@ -138,9 +138,9 @@
             "Last 2 week",
             "Last 1 month",
             "Last 2 month"});
-            this.comboBox1.Location = new System.Drawing.Point(400, 347);
+            this.comboBox1.Location = new System.Drawing.Point(676, 580);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(280, 21);
+            this.comboBox1.Size = new System.Drawing.Size(303, 21);
             this.comboBox1.TabIndex = 4;
             this.comboBox1.Text = "Select A Time Period";
             // 
@@ -150,9 +150,9 @@
             this.analyzeWithTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this.analyzeWithTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.analyzeWithTime.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.analyzeWithTime.Location = new System.Drawing.Point(686, 343);
+            this.analyzeWithTime.Location = new System.Drawing.Point(985, 570);
             this.analyzeWithTime.Name = "analyzeWithTime";
-            this.analyzeWithTime.Size = new System.Drawing.Size(91, 25);
+            this.analyzeWithTime.Size = new System.Drawing.Size(114, 38);
             this.analyzeWithTime.TabIndex = 5;
             this.analyzeWithTime.Text = "Analyze";
             this.analyzeWithTime.UseVisualStyleBackColor = false;
@@ -160,11 +160,13 @@
             // 
             // hashtagStat
             // 
+            this.hashtagStat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.hashtagStat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.hashtagStat.ForeColor = System.Drawing.SystemColors.Highlight;
             this.hashtagStat.FormattingEnabled = true;
-            this.hashtagStat.Location = new System.Drawing.Point(4, 345);
+            this.hashtagStat.Location = new System.Drawing.Point(94, 580);
             this.hashtagStat.Name = "hashtagStat";
-            this.hashtagStat.Size = new System.Drawing.Size(223, 21);
+            this.hashtagStat.Size = new System.Drawing.Size(254, 21);
             this.hashtagStat.TabIndex = 6;
             this.hashtagStat.Text = "Select A Hashtag";
             // 
@@ -179,7 +181,7 @@
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
             this.Name = "Statistic";
-            this.Size = new System.Drawing.Size(780, 379);
+            this.Size = new System.Drawing.Size(1302, 700);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
