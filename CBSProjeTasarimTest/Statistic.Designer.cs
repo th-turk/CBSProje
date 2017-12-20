@@ -48,6 +48,7 @@
             // 
             // chart1
             // 
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chart1.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea1.Area3DStyle.Enable3D = true;
             chartArea1.Area3DStyle.Inclination = 50;
@@ -78,6 +79,7 @@
             // 
             // chart2
             // 
+            this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chart2.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea2.Area3DStyle.Inclination = 10;
             chartArea2.Area3DStyle.PointDepth = 80;
@@ -87,7 +89,7 @@
             this.chart2.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(366, 3);
+            this.chart2.Location = new System.Drawing.Point(400, 3);
             this.chart2.Name = "chart2";
             this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
             series2.ChartArea = "ChartArea1";
@@ -136,7 +138,7 @@
             "Last 2 week",
             "Last 1 month",
             "Last 2 month"});
-            this.comboBox1.Location = new System.Drawing.Point(366, 347);
+            this.comboBox1.Location = new System.Drawing.Point(400, 347);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(280, 21);
             this.comboBox1.TabIndex = 4;
@@ -148,7 +150,7 @@
             this.analyzeWithTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this.analyzeWithTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.analyzeWithTime.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.analyzeWithTime.Location = new System.Drawing.Point(652, 343);
+            this.analyzeWithTime.Location = new System.Drawing.Point(686, 343);
             this.analyzeWithTime.Name = "analyzeWithTime";
             this.analyzeWithTime.Size = new System.Drawing.Size(91, 25);
             this.analyzeWithTime.TabIndex = 5;

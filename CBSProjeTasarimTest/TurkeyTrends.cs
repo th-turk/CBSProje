@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseSession;
 
@@ -13,11 +8,14 @@ namespace CBSProjeTasarimTest
 {
     public partial class TurkeyTrends : UserControl
     {
+        int labelDistance = 40;
+
         public TurkeyTrends()
         {
             InitializeComponent();
         }
         
+        //Live Tweets Scrape Start 
         public void GetTrends(string loc)
         {
             labelDistance = 0;
@@ -63,9 +61,8 @@ namespace CBSProjeTasarimTest
             }
             
         }
-
-        int labelDistance = 40;
-
+        
+        //List Database Queries At Start
         public void GetTrends(List<ResultsObj> allHashtags)
         {
             labelDistance = 0;            
@@ -99,7 +96,6 @@ namespace CBSProjeTasarimTest
             }
         }
       
-
         protected void tag_Click(object sender, EventArgs e)
         {
             Label temp = sender as Label;

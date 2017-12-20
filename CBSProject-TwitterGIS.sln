@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CBSProjeTasarimTest", "CBSProjeTasarimTest\CBSProjeTasarimTest.csproj", "{D7CBC5FB-3D21-4F50-A5C4-3218B1F800A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIS-Map-UI", "CBSProjeTasarimTest\GIS-Map-UI.csproj", "{D7CBC5FB-3D21-4F50-A5C4-3218B1F800A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseSession", "DatabaseSession\DatabaseSession.csproj", "{ABD5C860-A104-489E-ADD7-CD459FA87359}"
 EndProject
