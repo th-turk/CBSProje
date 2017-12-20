@@ -5,3 +5,4 @@ C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\bin\Debug\Dapper
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\obj\Debug\DatabaseSession.csproj.CoreCompileInputs.cache
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\obj\Debug\DatabaseSession.dll
 C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\obj\Debug\DatabaseSession.pdb
+C:\Users\tahat\source\repos\CBSProjeTasarimTest\DatabaseSession\obj\Debug\DatabaseSession.csprojResolveAssemblyReference.cache

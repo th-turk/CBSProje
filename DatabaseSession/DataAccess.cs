@@ -79,6 +79,15 @@ namespace DatabaseSession
             }
         }
 
+        //Get Hashtags with last 10 minutes
+        public List<ResultsObj> GetTweetsInlast10MinHashtags()
+        {
+            using (IDbConnection conn = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("DB")))
+            {
+                return conn.Query<ResultsObj>($"SELECT  COUNT(*) AS sayi, tw.hastag from tweet tw where tweeted_date > DateADD(mi, -12, GETDATE()) GROUP BY tw.hastag ORDER BY  sayi DESC;  ").ToList();
+            }
+        }
+
         //Get Tweets By given hashtag and time
         public List<TweetDB> GetTweetsByHastagTime(string hashtag,string time)
         {

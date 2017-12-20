@@ -22,7 +22,7 @@ namespace CBSProjeTasarimTest
             string XPath = "";
             try
             {
-                if(Url =="Türkiye") urlTrends = "https://trends24.in/turkey/";
+                if(Url =="Turkey") urlTrends = "https://trends24.in/turkey/";
                 else urlTrends = "https://trends24.in";
                 
                 XPath = "//*[@id='trend-list']/div[1]/ol/li";

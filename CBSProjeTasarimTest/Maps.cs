@@ -290,7 +290,7 @@ namespace CBSProjeTasarimTest
                 mi.Do("Set Map  Layer " + (layerSayisi) + " Editable On");
 
                 TurkeyTrends turkeyTrends = new TurkeyTrends();
-                turkeyTrends.GetTrends("Türkiye");
+                turkeyTrends.GetTrends("Turkey");
                 if (!tags.Contains(turkeyTrends))
                 {
                     tags.Controls.Add(turkeyTrends);

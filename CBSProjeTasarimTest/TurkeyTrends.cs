@@ -29,34 +29,39 @@ namespace CBSProjeTasarimTest
             Label title = new Label();
             panel1.Controls.Add(title);
             title.AutoSize = true;
-            title.Text = loc + " Trendleri";
-            title.Location = new Point(30, 0);
+            title.Text = loc + " Trends";
+            title.Location = new Point(40, 0);
             title.ForeColor = Color.Black;
             labelDistance += 40;
 
             //
             // trends.ToArray().Length for i<1
             //
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < trends.ToArray().Length; i++)
             {
                 string trendUrl = twitter.GenerateHashtagString(trends[i]);
                 List<Tweet> tweetler = twitter.GetTweetsByHashtag(trendUrl, trends[i]);
                 twitter.FindUserLocation(tweetler);
-
+                
+            }
+            DataAccess db = new DataAccess();
+            List<ResultsObj> ro = db.GetTweetsInlast10MinHashtags();
+            for (int i = 0; i < ro.ToArray().Length; i++)
+            {
                 Label tag = new Label();
                 panel1.Controls.Add(tag);
                 tag.Top = labelDistance;
                 tag.Left = 15;
                 tag.AutoSize = true;
-                tag.Text = trends[i];
+                tag.Text = ro[i].ToString();
                 tag.Font = new Font(FontFamily.GenericSansSerif, 11, FontStyle.Bold);
                 tag.ForeColor = Color.Green;
                 tag.Visible = true;
                 labelDistance += 30;
-
                 tag.Click += new EventHandler(tag_Click);
                 tag.MouseHover += new EventHandler(tag_MouseHover);
             }
+            
         }
 
         int labelDistance = 40;
@@ -67,8 +72,8 @@ namespace CBSProjeTasarimTest
             Label title = new Label();
             panel1.Controls.Add(title);
             title.AutoSize = true;
-            title.Text = "Bütün Hashtagler";
-            title.Location = new Point(30, 0);
+            title.Text = "All Hashtags";
+            title.Location = new Point(40, 0);
             title.ForeColor = Color.Black;
             labelDistance += 40;
 
@@ -99,7 +104,6 @@ namespace CBSProjeTasarimTest
         {
             Label temp = sender as Label;
             string hashtag = temp.Text;
-            MessageBox.Show(hashtag);
             int index = hashtag.IndexOf('(');
             int index2 = hashtag.IndexOf(')');
 
