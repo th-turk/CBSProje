@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MapInfo;
 using System.Runtime.InteropServices;
@@ -79,7 +74,7 @@ namespace CBSProjeTasarimTest
             }
             catch (Exception)
             {
-                string message = "Are You Sure to Close App?";
+                string message = "There İs Some Problem  With MapInfo Turkey Table\n Are You Sure to Close App?";
                 string caption = "Application Shut Down";
                 var result = MessageBox.Show(message, caption,
                                              MessageBoxButtons.YesNo,
@@ -613,7 +608,7 @@ namespace CBSProjeTasarimTest
             Maps.counter++;
             foreach (var tweet in tweetDB)
             {
-                Maps.mi.Do("Create point  into variable p (" + tweet.lon + "," + tweet.lat + ") Symbol MakeCustomSymbol (\"PING-64.BMP\",0,12,0)");
+                Maps.mi.Do("Create point  into variable p (" + tweet.lon + "," + tweet.lat + ") Symbol MakeCustomSymbol (\"PING-64.BMP\",0,15,0)");
                 Maps.mi.Do("insert into CANLI_TWEET(obj,id,hastag,user,konum,tarih) values (p,\"" + tweet.id + "\",\"" + tweet.hastag + "\",\"" + tweet.tweeted_user + "\",\"" + tweet.tweeted_location + "\",\"" + tweet.tweeted_date + "\")");
 
             }
